@@ -78,3 +78,4 @@ await writeJson(join(dist, 'package.json'), packageJson)
 
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
+await cp(join(root, 'src', 'index.d.ts'), join(dist, 'dist', 'index.d.ts'))
