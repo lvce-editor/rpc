@@ -20,7 +20,12 @@ const options = {
       objectShorthand: true,
     },
   },
-  external: ['@lvce-editor/ipc', '@lvce-editor/json-rpc'],
+  external: [
+    '@lvce-editor/ipc',
+    '@lvce-editor/json-rpc',
+    '@lvce-editor/command',
+    '@lvce-editor/ipc/dist/browser.js',
+  ],
   plugins: [
     babel({
       babelHelpers: 'bundled',
