@@ -3,8 +3,14 @@ export interface Rpc {
   readonly invokeAndTransfer: (method: string, ...params: any[]) => Promise<any>
 }
 
+export interface RpcClientOptions {
+  readonly commandMap: any
+  readonly [key: string]: any
+}
+
 export interface RpcClient {
-  readonly create: ({ commandMap }: { commandMap: any }) => Promise<Rpc>
+  readonly create: (options: RpcClientOptions) => Promise<Rpc>
 }
 
 export const WebWorkerRpcClient: RpcClient
+export const MessagePortRpcParent: RpcClient
