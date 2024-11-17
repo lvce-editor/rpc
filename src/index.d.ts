@@ -1,10 +1,11 @@
 export interface Rpc {
   readonly invoke: (method: string, ...params: any[]) => Promise<any>
+  readonly invokeAndTransfer: (method: string, ...params: any[]) => Promise<any>
 }
 
 export interface RpcClientOptions {
-  commandMap: any
-  [key: string]: any
+  readonly commandMap: any
+  readonly [key: string]: any
 }
 
 export interface RpcClient {
