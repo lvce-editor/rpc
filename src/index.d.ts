@@ -17,3 +17,4 @@ export interface RpcClient {
 
 export const WebWorkerRpcClient: RpcClient
 export const MessagePortRpcParent: RpcClient
+export const WebSocketRpcParent: RpcClient
