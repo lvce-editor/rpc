@@ -15,6 +15,7 @@ export interface WebWorkerRpcClientOptions extends RpcClientOptions {}
 
 export interface MessagePortRpcParentOptions extends RpcClientOptions {
   readonly messagePort: MessagePort
+  readonly isMessagePortOpen?: boolean
 }
 
 export interface WebSocketRpcParentOptions extends RpcClientOptions {
