@@ -11,10 +11,20 @@ export interface RpcClientOptions {
   readonly [key: string]: any
 }
 
-export interface RpcClient {
-  readonly create: (options: RpcClientOptions) => Promise<Rpc>
+export interface WebWorkerRpcClientOptions extends RpcClientOptions {}
+
+export interface MessagePortRpcParentOptions extends RpcClientOptions {
+  readonly messagePort: MessagePort
 }
 
-export const WebWorkerRpcClient: RpcClient
-export const MessagePortRpcParent: RpcClient
-export const WebSocketRpcParent: RpcClient
+export interface WebSocketRpcParentOptions extends RpcClientOptions {
+  readonly webSocket: WebSocket
+}
+
+export interface RpcClient<T extends RpcClientOptions> {
+  readonly create: (options: T) => Promise<Rpc>
+}
+
+export const WebWorkerRpcClient: RpcClient<WebWorkerRpcClientOptions>
+export const MessagePortRpcParent: RpcClient<MessagePortRpcParentOptions>
+export const WebSocketRpcParent: RpcClient<WebSocketRpcParentOptions>
