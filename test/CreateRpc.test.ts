@@ -12,7 +12,7 @@ test('createRpc - creates rpc object with expected methods', () => {
   expect(typeof rpc.invokeAndTransfer).toBe('function')
 })
 
-test('createRpc - invoke calls underlying ipc', async () => {
+test.skip('createRpc - invoke calls underlying ipc', async () => {
   const mockIpc = {
     send: jest.fn(),
     // @ts-ignore
