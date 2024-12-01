@@ -6,15 +6,15 @@ import { IpcParentWithWebSocket } from '@lvce-editor/ipc/dist/browser.js'
 
 export const create = async ({
   commandMap,
-  webSocketUrl
+  webSocket,
 }: {
-  commandMap: any,
-  webSocketUrl:string
+  commandMap: any
+  webSocket: WebSocket
 }): Promise<any> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const rawIpc = await IpcParentWithWebSocket.create({
-    webSocketUrl
+    webSocket,
   })
   const ipc = IpcParentWithWebSocket.wrap(rawIpc)
   HandleIpc.handleIpc(ipc)
