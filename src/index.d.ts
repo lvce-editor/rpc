@@ -41,6 +41,7 @@ export interface RpcClient<T extends RpcClientOptions> {
   readonly create: (options: T) => Promise<Rpc>
 }
 
+export const ElectronMessagePortRpcClient: RpcClient<ElectronMessagePortRpcClientOptions>
 export const ElectronUtilityProcessRpcClient: RpcClient<ElectronUtilityProcessRpcClientOptions>
 export const MessagePortRpcParent: RpcClient<MessagePortRpcParentOptions>
 export const NodeForkedProcessRpcClient: RpcClient<NodeForkedProcessRpcClientOptions>
