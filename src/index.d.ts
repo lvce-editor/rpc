@@ -13,6 +13,10 @@ export interface RpcClientOptions {
 
 export interface ElectronUtilityProcessRpcClientOptions extends RpcClientOptions {}
 
+export interface ElectronMessagePortRpcClientOptions extends RpcClientOptions {
+  readonly messagePort: any
+}
+
 export interface WebWorkerRpcClientOptions extends RpcClientOptions {}
 
 export interface NodeWorkerRpcClientOptions extends RpcClientOptions {}
