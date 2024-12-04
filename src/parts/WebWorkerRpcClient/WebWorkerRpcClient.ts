@@ -1,7 +1,7 @@
 import * as Command from '../Command/Command.ts'
 import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
-import * as IpcChild from '../IpcChild/IpcChild.ts'
+import * as IpcChild from '../IpcChildBrowser/IpcChildBrowser.ts'
 
 export const create = async ({
   commandMap,
