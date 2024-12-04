@@ -17,6 +17,11 @@ export interface ElectronMessagePortRpcClientOptions extends RpcClientOptions {
   readonly messagePort: any
 }
 
+export interface NodeWebSocketRpcClientOptions extends RpcClientOptions {
+  readonly handle: any
+  readonly request: any
+}
+
 export interface WebWorkerRpcClientOptions extends RpcClientOptions {}
 
 export interface NodeWorkerRpcClientOptions extends RpcClientOptions {}
@@ -39,6 +44,7 @@ export interface RpcClient<T extends RpcClientOptions> {
 export const ElectronUtilityProcessRpcClient: RpcClient<ElectronUtilityProcessRpcClientOptions>
 export const MessagePortRpcParent: RpcClient<MessagePortRpcParentOptions>
 export const NodeForkedProcessRpcClient: RpcClient<NodeForkedProcessRpcClientOptions>
+export const NodeWebSocketRpcClient: RpcClient<NodeWebSocketRpcClientOptions>
 export const NodeWorkerRpcClient: RpcClient<NodeWorkerRpcClientOptions>
 export const WebSocketRpcParent: RpcClient<WebSocketRpcParentOptions>
 export const WebWorkerRpcClient: RpcClient<WebWorkerRpcClientOptions>

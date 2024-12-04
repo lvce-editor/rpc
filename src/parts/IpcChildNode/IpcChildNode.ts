@@ -1,5 +1,5 @@
-export const listen = async (module: any): Promise<any> => {
-  const rawIpc = await module.listen()
+export const listen = async (module: any, options?: any): Promise<any> => {
+  const rawIpc = await module.listen(options)
   if (module.signal) {
     module.signal(rawIpc)
   }
