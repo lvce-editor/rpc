@@ -15,6 +15,8 @@ export interface WebWorkerRpcClientOptions extends RpcClientOptions {}
 
 export interface NodeWorkerRpcClientOptions extends RpcClientOptions {}
 
+export interface NodeForkedProcessRpcClientOptions extends RpcClientOptions {}
+
 export interface MessagePortRpcParentOptions extends RpcClientOptions {
   readonly messagePort: MessagePort
   readonly isMessagePortOpen?: boolean
@@ -30,5 +32,6 @@ export interface RpcClient<T extends RpcClientOptions> {
 
 export const WebWorkerRpcClient: RpcClient<WebWorkerRpcClientOptions>
 export const NodeWorkerRpcClient: RpcClient<NodeWorkerRpcClientOptions>
+export const NodeForkedProcessRpcClient: RpcClient<NodeForkedProcessRpcClientOptions>
 export const MessagePortRpcParent: RpcClient<MessagePortRpcParentOptions>
 export const WebSocketRpcParent: RpcClient<WebSocketRpcParentOptions>
