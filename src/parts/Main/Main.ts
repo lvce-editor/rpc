@@ -1,3 +1,4 @@
+export * as ElectronUtilityProcessRpcClient from '../ElectronUtilityProcessRpcClient/ElectronUtilityProcessRpcClient.ts'
 export * as MessagePortRpcParent from '../MessagePortRpcParent/MessagePortRpcParent.ts'
 export * as NodeForkedProcessRpcClient from '../NodeForkedProcessRpcClient/NodeForkedProcessRpcClient.ts'
 export * as NodeWorkerRpcClient from '../NodeWorkerRpcClient/NodeWorkerRpcClient.ts'
