@@ -15,6 +15,7 @@ const logError = (): void => {
 }
 
 export const handleMessage = (event: any): Promise<void> => {
+  const actualRequiresSocket = event?.target?.requiresSocket || requiresSocket
   return HandleJsonRpcMessage.handleJsonRpcMessage(
     event.target,
     event.data,
@@ -22,6 +23,6 @@ export const handleMessage = (event: any): Promise<void> => {
     Callback.resolve,
     preparePrettyError,
     logError,
-    requiresSocket,
+    actualRequiresSocket,
   )
 }
