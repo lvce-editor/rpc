@@ -1,8 +1,7 @@
 import * as Command from '../Command/Command.ts'
 import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
-// @ts-ignore
-import { IpcParentWithMessagePort } from '@lvce-editor/ipc/dist/browser.js'
+import { IpcParentWithMessagePort } from '@lvce-editor/ipc'
 
 export const create = async ({
   commandMap,
