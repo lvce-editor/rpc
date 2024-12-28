@@ -1,7 +1,8 @@
 import * as JsonRpc from '@lvce-editor/json-rpc'
+import type { Rpc } from '../Rpc/Rpc.ts'
 
-export const createRpc = (ipc: any): any => {
-  const rpc = {
+export const createRpc = (ipc: any): Rpc => {
+  const rpc: Rpc = {
     /**
      * @deprecated
      */
