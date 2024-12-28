@@ -29,6 +29,11 @@ class MockIpc extends EventTarget {
       this.#port1.postMessage(message, { transfer })
     })
   }
+
+  dispose(): void {
+    this.#port1.close()
+    this.#port2.close()
+  }
 }
 
 test('createRpc - creates rpc object with expected methods', () => {
@@ -37,6 +42,7 @@ test('createRpc - creates rpc object with expected methods', () => {
   expect(typeof rpc.send).toBe('function')
   expect(typeof rpc.invoke).toBe('function')
   expect(typeof rpc.invokeAndTransfer).toBe('function')
+  mockIpc.dispose()
 })
 
 test('createRpc - send method calls underlying ipc send', () => {
@@ -48,6 +54,7 @@ test('createRpc - send method calls underlying ipc send', () => {
     method: 'test-method',
     params: ['arg1', 'arg2'],
   })
+  mockIpc.dispose()
 })
 
 test('createRpc - invoke method sends message and receives response', async () => {
@@ -75,6 +82,30 @@ test('createRpc - invoke method sends message and receives response', async () =
     params: ['arg1', 'arg2'],
   })
   expect(result).toBe('test-result')
+  mockIpc.dispose()
+})
+
+test('createRpc - invoke method handles rejection', async () => {
+  const mockIpc = new MockIpc()
+  HandleIpc.handleIpc(mockIpc)
+
+  mockIpc.send.mockImplementation((message: any) => {
+    mockIpc.dispatchEvent(
+      new MessageEvent('message', {
+        data: {
+          jsonrpc: '2.0',
+          id: message.id,
+          error: {
+            message: 'Test error',
+          },
+        },
+      }),
+    )
+  })
+
+  const rpc = CreateRpc.createRpc(mockIpc)
+  await expect(rpc.invoke('test-method', 'arg1')).rejects.toThrow('Test error')
+  mockIpc.dispose()
 })
 
 test('createRpc - invokeAndTransfer method sends message with transfer and receives response', async () => {
@@ -103,28 +134,7 @@ test('createRpc - invokeAndTransfer method sends message with transfer and recei
     params: [transferable],
   })
   expect(result).toBe('test-result')
-})
-
-test('createRpc - invoke method handles rejection', async () => {
-  const mockIpc = new MockIpc()
-  HandleIpc.handleIpc(mockIpc)
-
-  mockIpc.send.mockImplementation((message: any) => {
-    mockIpc.dispatchEvent(
-      new MessageEvent('message', {
-        data: {
-          jsonrpc: '2.0',
-          id: message.id,
-          error: {
-            message: 'Test error',
-          },
-        },
-      }),
-    )
-  })
-
-  const rpc = CreateRpc.createRpc(mockIpc)
-  await expect(rpc.invoke('test-method', 'arg1')).rejects.toThrow('Test error')
+  mockIpc.dispose()
 })
 
 test('createRpc - invokeAndTransfer method handles rejection', async () => {
@@ -148,4 +158,5 @@ test('createRpc - invokeAndTransfer method handles rejection', async () => {
 
   const rpc = CreateRpc.createRpc(mockIpc)
   await expect(rpc.invokeAndTransfer('test-method', transferable)).rejects.toThrow('Test error')
+  mockIpc.dispose()
 })
