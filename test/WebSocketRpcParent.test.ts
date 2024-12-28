@@ -25,12 +25,12 @@ beforeEach(() => {
   mockCreateRpc.createRpc.mockClear()
 })
 
-await jestModule.unstable_mockModule('../src/parts/Command/Command.js', () => mockCommand)
-await jestModule.unstable_mockModule('@lvce-editor/ipc', () => ({
+jestModule.unstable_mockModule('../src/parts/Command/Command.js', () => mockCommand)
+jestModule.unstable_mockModule('@lvce-editor/ipc', () => ({
   IpcParentWithWebSocket: mockIpcParentWithWebSocket,
 }))
-await jestModule.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandleIpc)
-await jestModule.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
+jestModule.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandleIpc)
+jestModule.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
 
 const { create } = await import('../src/parts/WebSocketRpcParent/WebSocketRpcParent.js')
 
