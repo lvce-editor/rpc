@@ -1,4 +1,4 @@
-import { beforeEach, expect, jest, jest as jestModule, test } from '@jest/globals'
+import { beforeEach, expect, jest, test } from '@jest/globals'
 
 const mockCommand = {
   register: jest.fn(),
@@ -25,12 +25,12 @@ beforeEach(() => {
   mockCreateRpc.createRpc.mockClear()
 })
 
-jestModule.unstable_mockModule('../src/parts/Command/Command.js', () => mockCommand)
-jestModule.unstable_mockModule('@lvce-editor/ipc', () => ({
+jest.unstable_mockModule('../src/parts/Command/Command.js', () => mockCommand)
+jest.unstable_mockModule('@lvce-editor/ipc', () => ({
   IpcParentWithWebSocket: mockIpcParentWithWebSocket,
 }))
-jestModule.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandleIpc)
-jestModule.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
+jest.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandleIpc)
+jest.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
 
 const { create } = await import('../src/parts/WebSocketRpcParent/WebSocketRpcParent.js')
 
