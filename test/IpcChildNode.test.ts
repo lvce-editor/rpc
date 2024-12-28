@@ -8,8 +8,8 @@ test('listen - creates ipc child with given transport and options', async () => 
     listen: jest.fn(() => {
       return rawIpc
     }),
-    signal() {},
-    wrap() {
+    signal(): void {},
+    wrap(): any {
       return wrappedIpc
     },
   }
