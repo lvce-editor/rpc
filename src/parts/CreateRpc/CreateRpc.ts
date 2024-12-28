@@ -1,5 +1,5 @@
 import * as JsonRpc from '@lvce-editor/json-rpc'
-import { Rpc } from '../Rpc/Rpc.ts'
+import type { Rpc } from '../Rpc/Rpc.ts'
 
 export const createRpc = (ipc: any): Rpc => {
   const rpc: Rpc = {
