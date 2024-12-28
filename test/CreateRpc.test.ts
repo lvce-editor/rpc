@@ -1,7 +1,7 @@
 import { expect, jest, test } from '@jest/globals'
 import * as CreateRpc from '../src/parts/CreateRpc/CreateRpc.js'
 
-test.skip('createRpc - creates rpc object with expected methods', () => {
+test('createRpc - creates rpc object with expected methods', () => {
   const mockIpc = {
     send: jest.fn(),
     invoke: jest.fn(),
@@ -12,14 +12,18 @@ test.skip('createRpc - creates rpc object with expected methods', () => {
   expect(typeof rpc.invokeAndTransfer).toBe('function')
 })
 
-test.skip('createRpc - send method calls underlying ipc send', () => {
+test('createRpc - send method calls underlying ipc send', () => {
   const mockIpc = {
     send: jest.fn(),
     invoke: jest.fn(),
   }
   const rpc = CreateRpc.createRpc(mockIpc)
   rpc.send('test-method', 'arg1', 'arg2')
-  expect(mockIpc.send).toHaveBeenCalledWith('test-method', 'arg1', 'arg2')
+  expect(mockIpc.send).toHaveBeenCalledWith({
+    jsonrpc: '2.0',
+    method: 'test-method',
+    params: ['arg1', 'arg2'],
+  })
 })
 
 test.skip('createRpc - invoke method calls underlying ipc invoke', async () => {
