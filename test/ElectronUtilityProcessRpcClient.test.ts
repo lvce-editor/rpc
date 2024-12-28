@@ -1,4 +1,4 @@
-import { beforeEach, expect, jest, jest as jestModule, test } from '@jest/globals'
+import { beforeEach, expect, jest, test } from '@jest/globals'
 
 const mockCommand = {
   register: jest.fn(),
@@ -23,10 +23,10 @@ beforeEach(() => {
   mockCreateRpc.createRpc.mockClear()
 })
 
-await jestModule.unstable_mockModule('../src/parts/Command/Command.js', () => mockCommand)
-await jestModule.unstable_mockModule('../src/parts/IpcChildNode/IpcChildNode.js', () => mockIpcChild)
-await jestModule.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandleIpc)
-await jestModule.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
+jest.unstable_mockModule('../src/parts/Command/Command.js', () => mockCommand)
+jest.unstable_mockModule('../src/parts/IpcChildNode/IpcChildNode.js', () => mockIpcChild)
+jest.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandleIpc)
+jest.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
 
 const { create } = await import('../src/parts/ElectronUtilityProcessRpcClient/ElectronUtilityProcessRpcClient.js')
 
@@ -40,6 +40,7 @@ test('create - creates rpc client with electron utility process', async () => {
     invoke: jest.fn(),
   }
 
+  // @ts-ignore
   mockIpcChild.listen.mockResolvedValue(mockIpc)
   mockCreateRpc.createRpc.mockReturnValue(mockRpc)
 
