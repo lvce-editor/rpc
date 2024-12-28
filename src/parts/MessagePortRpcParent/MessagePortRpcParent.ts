@@ -1,7 +1,7 @@
+import { IpcParentWithMessagePort } from '@lvce-editor/ipc'
 import * as Command from '../Command/Command.ts'
 import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
-import { IpcParentWithMessagePort } from '@lvce-editor/ipc'
 
 export const create = async ({
   commandMap,
