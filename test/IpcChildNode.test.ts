@@ -25,6 +25,7 @@ test('listen - creates ipc child with given transport and options', async () => 
     handle: {},
   }
 
+  // @ts-ignore
   mockIpcChildWithWebSocket.create.mockResolvedValue(mockIpc)
 
   const result = await listen(mockTransport, mockOptions)
@@ -40,6 +41,7 @@ test('listen - creates ipc child with transport and no options', async () => {
   }
   const mockTransport = mockIpcChildWithWebSocket
 
+  // @ts-ignore
   mockIpcChildWithWebSocket.create.mockResolvedValue(mockIpc)
 
   const result = await listen(mockTransport)
