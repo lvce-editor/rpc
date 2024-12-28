@@ -30,7 +30,7 @@ class MockIpc extends EventTarget {
     })
   }
 
-  dispose() {
+  dispose(): void {
     this.#port1.close()
     this.#port2.close()
   }
