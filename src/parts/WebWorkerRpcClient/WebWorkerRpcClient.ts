@@ -3,7 +3,6 @@ import * as Command from '../Command/Command.ts'
 import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
 import * as IpcChild from '../IpcChildNode/IpcChildNode.ts'
-import { IpcChildWithModuleWorkerAndMessagePort } from '@lvce-editor/ipc'
 import type { Rpc } from '../Rpc/Rpc.ts'
 
 export const create = async ({ commandMap }: { commandMap: any }): Promise<Rpc> => {
