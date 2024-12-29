@@ -3,6 +3,8 @@ import type { Rpc } from '../Rpc/Rpc.ts'
 
 export const createRpc = (ipc: any): Rpc => {
   const rpc: Rpc = {
+    // @ts-ignore
+    ipc,
     /**
      * @deprecated
      */
