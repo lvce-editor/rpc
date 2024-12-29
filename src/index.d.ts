@@ -53,3 +53,4 @@ export const NodeWebSocketRpcClient: RpcClient<NodeWebSocketRpcClientOptions>
 export const NodeWorkerRpcClient: RpcClient<NodeWorkerRpcClientOptions>
 export const WebSocketRpcParent: RpcClient<WebSocketRpcParentOptions>
 export const WebWorkerRpcClient: RpcClient<WebWorkerRpcClientOptions>
+export const MessagePortRpcClient: RpcClient<WebWorkerRpcClientOptions>
