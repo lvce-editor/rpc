@@ -16,10 +16,11 @@ const logError = (): void => {
 
 export const handleMessage = (event: any): Promise<void> => {
   const actualRequiresSocket = event?.target?.requiresSocket || requiresSocket
+  const actualExecute = event?.target?.execute || Command.execute
   return HandleJsonRpcMessage.handleJsonRpcMessage(
     event.target,
     event.data,
-    Command.execute,
+    actualExecute,
     Callback.resolve,
     preparePrettyError,
     logError,
