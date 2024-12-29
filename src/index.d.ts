@@ -17,6 +17,10 @@ export interface ElectronMessagePortRpcClientOptions extends RpcClientOptions {
   readonly messagePort: any
 }
 
+export interface MessagePortRpcClientOptions extends RpcClientOptions {
+  readonly messagePort: MessagePort
+}
+
 export interface NodeWebSocketRpcClientOptions extends RpcClientOptions {
   readonly handle: any
   readonly request: any
