@@ -10,7 +10,6 @@ export const create = async ({ commandMap, messagePort }: { commandMap: any; mes
   Command.register(commandMap)
   const ipc = await IpcChild.listen(IpcChildWithElectronMessagePort, { messagePort })
   HandleIpc.handleIpc(ipc)
-  ipc.send('ready')
   const rpc = CreateRpc.createRpc(ipc)
   return rpc
 }
