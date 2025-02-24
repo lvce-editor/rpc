@@ -41,6 +41,10 @@ export interface WebSocketRpcParentOptions extends RpcClientOptions {
   readonly webSocket: WebSocket
 }
 
+interface MockRpcOptions extends RpcClientOptions {
+  [key: string]: any
+}
+
 export interface RpcClient<T extends RpcClientOptions> {
   readonly create: (options: T) => Promise<Rpc>
 }
@@ -54,3 +58,4 @@ export const NodeWorkerRpcClient: RpcClient<NodeWorkerRpcClientOptions>
 export const WebSocketRpcParent: RpcClient<WebSocketRpcParentOptions>
 export const WebWorkerRpcClient: RpcClient<WebWorkerRpcClientOptions>
 export const MessagePortRpcClient: RpcClient<MessagePortRpcClientOptions>
+export const MockRpc: RpcClient<MockRpcOptions>
