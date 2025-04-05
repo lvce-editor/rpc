@@ -37,6 +37,11 @@ export interface MessagePortRpcParentOptions extends RpcClientOptions {
   readonly isMessagePortOpen?: boolean
 }
 
+export interface NodeForkedProcessRpcParentOptions extends RpcClientOptions {
+  readonly argv?: readonly string[]
+  readonly execArgv?: readonly string[]
+}
+
 export interface WebSocketRpcParentOptions extends RpcClientOptions {
   readonly webSocket: WebSocket
 }
@@ -51,11 +56,12 @@ export interface RpcClient<T extends RpcClientOptions> {
 
 export const ElectronMessagePortRpcClient: RpcClient<ElectronMessagePortRpcClientOptions>
 export const ElectronUtilityProcessRpcClient: RpcClient<ElectronUtilityProcessRpcClientOptions>
+export const MessagePortRpcClient: RpcClient<MessagePortRpcClientOptions>
 export const MessagePortRpcParent: RpcClient<MessagePortRpcParentOptions>
+export const MockRpc: RpcClient<MockRpcOptions>
 export const NodeForkedProcessRpcClient: RpcClient<NodeForkedProcessRpcClientOptions>
+export const NodeForkedProcessRpcParent: RpcClient<NodeForkedProcessRpcParentOptions>
 export const NodeWebSocketRpcClient: RpcClient<NodeWebSocketRpcClientOptions>
 export const NodeWorkerRpcClient: RpcClient<NodeWorkerRpcClientOptions>
 export const WebSocketRpcParent: RpcClient<WebSocketRpcParentOptions>
 export const WebWorkerRpcClient: RpcClient<WebWorkerRpcClientOptions>
-export const MessagePortRpcClient: RpcClient<MessagePortRpcClientOptions>
-export const MockRpc: RpcClient<MockRpcOptions>
