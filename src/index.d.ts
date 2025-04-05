@@ -40,6 +40,8 @@ export interface MessagePortRpcParentOptions extends RpcClientOptions {
 export interface NodeForkedProcessRpcParentOptions extends RpcClientOptions {
   readonly argv?: readonly string[]
   readonly execArgv?: readonly string[]
+  readonly path: string
+  readonly stdio?: string
 }
 
 export interface WebSocketRpcParentOptions extends RpcClientOptions {
