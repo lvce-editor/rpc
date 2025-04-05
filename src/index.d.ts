@@ -4,6 +4,8 @@ export interface Rpc {
   readonly invoke: (method: string, ...params: any[]) => Promise<any>
 
   readonly invokeAndTransfer: (method: string, ...params: any[]) => Promise<any>
+
+  readonly dispose: () => Promise<void>
 }
 
 export interface RpcClientOptions {
