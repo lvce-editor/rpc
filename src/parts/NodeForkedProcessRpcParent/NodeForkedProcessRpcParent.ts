@@ -10,6 +10,7 @@ export const create = async ({
   execArgv,
   path,
   stdio,
+  env,
 }: {
   commandMap: any
   argv?: readonly string[]
@@ -17,6 +18,7 @@ export const create = async ({
   isMessagePortOpen?: boolean
   path: string
   stdio?: string
+  env?: any
 }): Promise<Rpc> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
@@ -25,6 +27,7 @@ export const create = async ({
     execArgv,
     path,
     stdio,
+    env,
   })
   const ipc = IpcParentWithNodeForkedProcess.wrap(rawIpc)
   HandleIpc.handleIpc(ipc)

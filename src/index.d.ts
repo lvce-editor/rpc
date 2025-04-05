@@ -44,6 +44,7 @@ export interface NodeForkedProcessRpcParentOptions extends RpcClientOptions {
   readonly execArgv?: readonly string[]
   readonly path: string
   readonly stdio?: string
+  readonly env?: any
 }
 
 export interface WebSocketRpcParentOptions extends RpcClientOptions {
