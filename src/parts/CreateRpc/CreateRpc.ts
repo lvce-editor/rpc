@@ -18,7 +18,7 @@ export const createRpc = (ipc: any): Rpc => {
       return JsonRpc.invokeAndTransfer(ipc, method, ...params)
     },
     async dispose(): Promise<void> {
-      ipc?.dispose()
+      await ipc?.dispose()
     },
   }
   return rpc
