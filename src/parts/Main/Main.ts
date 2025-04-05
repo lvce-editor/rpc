@@ -4,6 +4,7 @@ export * as MessagePortRpcClient from '../MessagePortRpcClient/MessagePortRpcCli
 export * as MessagePortRpcParent from '../MessagePortRpcParent/MessagePortRpcParent.ts'
 export * as MockRpc from '../MockRpc/MockRpc.ts'
 export * as NodeForkedProcessRpcClient from '../NodeForkedProcessRpcClient/NodeForkedProcessRpcClient.ts'
+export * as NodeForkedProcessRpcParent from '../NodeForkedProcessRpcParent/NodeForkedProcessRpcParent.ts'
 export * as NodeWebSocketRpcClient from '../NodeWebSocketRpcClient/NodeWebSocketRpcClient.ts'
 export * as NodeWorkerRpcClient from '../NodeWorkerRpcClient/NodeWorkerRpcClient.ts'
 export * as WebSocketRpcParent from '../WebSocketRpcParent/WebSocketRpcParent.ts'
