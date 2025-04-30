@@ -3,8 +3,6 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { root } from './root.js'
 
-const RE_WORD = /\w+/
-
 const getActualContent = (content) => {
   const lines = content.split('\n')
   const newLines = lines
