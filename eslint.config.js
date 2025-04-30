@@ -10,7 +10,4 @@ export default [
       'n/no-unsupported-features/node-builtins': 'off',
     },
   },
-  {
-    ignores: ['src/index.d.ts'],
-  },
 ]
