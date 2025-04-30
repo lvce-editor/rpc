@@ -9,8 +9,8 @@
     "build": "node scripts/build.js",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "test": "lerna run test",
     "postinstall": "lerna bootstrap --ci",
+    "test": "lerna run test",
     "type-check": "tsc -b"
   },
   "prettier": {
