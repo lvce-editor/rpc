@@ -1,75 +1,32 @@
 {
-  "name": "@lvce-editor/rpc",
+  "name": "@lvce-editor/rpc-monorepo",
   "version": "0.0.0-dev",
-  "description": "Rpc implementation",
-  "keywords": [
-    "rpc"
-  ],
+  "description": "",
   "license": "MIT",
   "author": "Lvce Editor",
-  "sideEffects": false,
   "type": "module",
-  "main": "src/index.ts",
-  "types": "src/index.d.ts",
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "node packages/build/src/build.js",
     "format": "prettier --write .",
     "lint": "eslint .",
     "postinstall": "lerna bootstrap --ci",
-    "test": "node --unhandled-rejections=warn --experimental-vm-modules ./node_modules/jest/bin/jest.js --detectOpenHandles --forceExit",
-    "test:watch": "node --unhandled-rejections=warn --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch",
-    "type-check": "tsc"
+    "test": "lerna run test",
+    "type-check": "tsc -b"
   },
   "prettier": {
     "semi": false,
     "singleQuote": true,
     "printWidth": 120
   },
-  "jest": {
-    "injectGlobals": false,
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "moduleNameMapper": {
-      "^(\\.{1,2}/.*)\\.js$": "$1"
-    },
-    "transform": {
-      "^.+\\.tsx?$": [
-        "ts-jest",
-        {
-          "useESM": true
-        }
-      ]
-    },
-    "collectCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 85,
-        "functions": 85,
-        "lines": 85,
-        "statements": 85
-      }
-    }
-  },
-  "dependencies": {
-    "@lvce-editor/command": "^1.2.0",
-    "@lvce-editor/ipc": "^13.8.0",
-    "@lvce-editor/json-rpc": "^5.4.0"
-  },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.27.1",
-    "@jest/globals": "^29.7.0",
     "@lerna/legacy-package-management": "^8.2.2",
     "@lvce-editor/eslint-config": "^1.39.0",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-node-resolve": "^16.0.1",
     "eslint": "^9.25.1",
-    "execa": "^9.5.2",
-    "jest": "^29.7.0",
     "lerna": "^8.2.2",
     "prettier": "^3.5.3",
-    "rollup": "^4.40.1",
-    "ts-jest": "^29.3.2",
     "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
