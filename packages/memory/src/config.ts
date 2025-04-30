@@ -3,4 +3,4 @@ import { root } from './root.ts'
 
 export const instantiations = 12_000
 
-export const instantiationsPath = join(root, 'packages', 'search-process')
+export const instantiationsPath = join(root, 'packages', 'rpc')
