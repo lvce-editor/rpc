@@ -56,7 +56,7 @@ await bundleJs()
 
 const version = await getVersion()
 
-const packageJson = await readJson(join(root, 'packages', 'search-process', 'package.json'))
+const packageJson = await readJson(join(root, 'packages', 'rpc', 'package.json'))
 
 delete packageJson.scripts
 delete packageJson.devDependencies
@@ -67,17 +67,10 @@ delete packageJson.directories
 delete packageJson.nodemonConfig
 packageJson.version = version
 packageJson.main = 'dist/index.js'
+packageJson.types = 'dist/index.d.ts'
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
-await mkdir(join(dist, 'bin'))
-await writeFile(
-  join(dist, 'bin', 'searchProcess.js'),
-  `#!/usr/bin/env node
-
-import '../dist/index.js'
-`,
-)
-
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
+await cp(join(root, 'packages', 'rpc', 'src', 'index.d.ts'), join(dist, 'dist', 'index.d.ts'))

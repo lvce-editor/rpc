@@ -9,7 +9,7 @@ import { root } from './root.js'
  * @type {import('rollup').RollupOptions}
  */
 const options = {
-  input: join(root, 'packages/search-process/src/searchProcessMain.ts'),
+  input: join(root, 'packages/rpc/src/index.ts'),
   preserveEntrySignatures: 'strict',
   treeshake: {
     propertyReadSideEffects: false,
@@ -24,10 +24,14 @@ const options = {
     },
   },
   external: [
+    '@lvce-editor/assert',
+    '@lvce-editor/command',
+    '@lvce-editor/ipc',
+    '@lvce-editor/ipc',
+    '@lvce-editor/ipc/dist/browser.js',
+    '@lvce-editor/json-rpc',
     '@lvce-editor/ripgrep',
     '@lvce-editor/rpc',
-    '@lvce-editor/ipc',
-    '@lvce-editor/assert',
     '@lvce-editor/verror',
     'electron',
     'execa',
