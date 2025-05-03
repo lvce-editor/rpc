@@ -8,6 +8,7 @@ export * as NodeForkedProcessRpcParent from '../NodeForkedProcessRpcParent/NodeF
 export * as NodeWebSocketRpcClient from '../NodeWebSocketRpcClient/NodeWebSocketRpcClient.ts'
 export * as NodeWorkerRpcClient from '../NodeWorkerRpcClient/NodeWorkerRpcClient.ts'
 export * as PlainMessagePortRpcParent from '../PlainMessagePortRpcParent/PlainMessagePortRpcParent.ts'
+export * as PlainMessagePortRpc from '../PlainMessagePortRpc/PlainMessagePortRpc.ts'
 export * as WebSocketRpcParent from '../WebSocketRpcParent/WebSocketRpcParent.ts'
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
 export type * from '../RpcClient/RpcClient.ts'
