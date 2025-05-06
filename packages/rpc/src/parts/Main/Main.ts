@@ -11,5 +11,6 @@ export * as PlainMessagePortRpcParent from '../PlainMessagePortRpcParent/PlainMe
 export * as PlainMessagePortRpc from '../PlainMessagePortRpc/PlainMessagePortRpc.ts'
 export * as WebSocketRpcParent from '../WebSocketRpcParent/WebSocketRpcParent.ts'
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
+export * as ElectronUtilityProcessRpcParent from '../ElectronUtilityProcessRpcParent/ElectronUtilityProcessRpcParent.ts'
 export type * from '../RpcClient/RpcClient.ts'
 export type * from '../RpcClientOptions/RpcClientOptions.ts'
