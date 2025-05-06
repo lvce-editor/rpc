@@ -9,14 +9,19 @@ export const create = async ({
   commandMap,
   request,
   handle,
+  requiresSocket,
 }: {
   commandMap: any
   request: any
   handle: any
+  requiresSocket?: any
 }): Promise<Rpc> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const ipc = await IpcChild.listen(IpcChildWithWebSocket, { request, handle })
+  if (requiresSocket) {
+    ipc.requiresSocket = requiresSocket
+  }
   HandleIpc.handleIpc(ipc)
   const rpc = CreateRpc.createRpc(ipc)
   return rpc
