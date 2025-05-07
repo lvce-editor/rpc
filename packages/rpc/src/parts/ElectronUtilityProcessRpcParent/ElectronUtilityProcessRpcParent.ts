@@ -11,6 +11,7 @@ export const create = async ({
   execArgv,
   path,
   name,
+  requiresSocket,
 }: {
   commandMap: any
   env?: any
@@ -18,6 +19,7 @@ export const create = async ({
   execArgv?: any
   path: string
   name: string
+  requiresSocket?: any
 }): Promise<Rpc> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
@@ -29,6 +31,10 @@ export const create = async ({
     name,
   })
   const ipc = IpcParentWithElectronUtilityProcess.wrap(rawIpc)
+  if (requiresSocket) {
+    // @ts-ignore
+    ipc.requiresSocket = requiresSocket
+  }
   HandleIpc.handleIpc(ipc)
   const rpc = CreateRpc.createRpc(ipc)
   return rpc
