@@ -15,9 +15,8 @@ export const create = async ({
 }): Promise<Rpc> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
-  const ipc = await IpcChildWithRendererProcess2.listen({
-    webContents,
-  })
+  const ipc = IpcChildWithRendererProcess2.wrap(webContents)
+
   if (requiresSocket) {
     // @ts-ignore
     ipc.requiresSocket = requiresSocket
