@@ -44,7 +44,7 @@
   "dependencies": {
     "@lvce-editor/command": "^1.2.0",
     "@lvce-editor/ipc": "^14.1.0",
-    "@lvce-editor/json-rpc": "^6.0.0"
+    "@lvce-editor/json-rpc": "^6.1.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
