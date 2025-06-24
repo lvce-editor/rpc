@@ -7,6 +7,7 @@ export const mockWorkerGlobalRpc = (): MockWorkerGlobalRpcResult => {
   const originalOnMessage = globalThis.onmessage
   const originalPostMessage = globalThis.postMessage
   const originalWorkerGlobalScope = globalThis.WorkerGlobalScope
+  const originalAddEventListener = globalThis.addEventListener
 
   let onMessageListener: ((event: MessageEvent) => void) | undefined
 
@@ -23,6 +24,8 @@ export const mockWorkerGlobalRpc = (): MockWorkerGlobalRpcResult => {
       onMessageListener = listener as (event: MessageEvent) => void
     }
   }
+
+  globalThis.postMessage = (): void => {}
 
   // @ts-ignore
   globalThis.WorkerGlobalScope = {}
@@ -48,6 +51,7 @@ export const mockWorkerGlobalRpc = (): MockWorkerGlobalRpcResult => {
       globalThis.onmessage = originalOnMessage
       globalThis.postMessage = originalPostMessage
       globalThis.WorkerGlobalScope = originalWorkerGlobalScope
+      globalThis.addEventListener = originalAddEventListener
     },
   }
 }
