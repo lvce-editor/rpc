@@ -11,6 +11,7 @@ export * as NodeWebSocketRpcClient from '../NodeWebSocketRpcClient/NodeWebSocket
 export * as NodeWorkerRpcClient from '../NodeWorkerRpcClient/NodeWorkerRpcClient.ts'
 export * as PlainMessagePortRpc from '../PlainMessagePortRpc/PlainMessagePortRpc.ts'
 export * as PlainMessagePortRpcParent from '../PlainMessagePortRpcParent/PlainMessagePortRpcParent.ts'
+export * as TransferMessagePortRpcParent from '../TransferMessagePortRpcParent/TransferMessagePortRpcParent.ts'
 export * as WebSocketRpcParent from '../WebSocketRpcParent/WebSocketRpcParent.ts'
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
 export * from '../MockWebSocketRpc/MockWebSocketRpc.ts'
