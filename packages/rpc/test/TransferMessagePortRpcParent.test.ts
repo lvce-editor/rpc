@@ -20,6 +20,12 @@ test('should create RPC with transferred message port', async () => {
   expect(typeof result.invoke).toBe('function')
   expect(typeof result.invokeAndTransfer).toBe('function')
   expect(typeof result.dispose).toBe('function')
+
+  // Cleanup
+  await result.dispose()
+  if (capturedPort) {
+    (capturedPort as MessagePort).close()
+  }
 })
 
 const mockSend = (port: MessagePort): Promise<void> => {
