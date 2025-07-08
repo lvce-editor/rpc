@@ -28,7 +28,7 @@ export const create = async ({
   const ipc = IpcParentWithModuleWorker.wrap(worker)
   HandleIpc.handleIpc(ipc)
   const workerRpc = createRpc(ipc)
-  await workerRpc.invoke('initialize', 'message-port', port)
+  await workerRpc.invokeAndTransfer('initialize', 'message-port', port)
   HandleIpc.unhandleIpc(ipc)
   return workerRpc
 }

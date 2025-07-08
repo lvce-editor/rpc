@@ -54,6 +54,7 @@ test('create - creates rpc parent with module worker and message port', async ()
   const mockRpc = {
     send: jest.fn(),
     invoke: jest.fn(),
+    invokeAndTransfer: jest.fn(),
   }
   const mockMessagePort = {}
   const mockCommandMap = { testCommand: jest.fn() }
@@ -82,7 +83,7 @@ test('create - creates rpc parent with module worker and message port', async ()
   expect(mockIpcParentWithModuleWorker.wrap).toHaveBeenCalledWith(mockWorker)
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)
   expect(mockCreateRpc.createRpc).toHaveBeenCalledWith(mockIpc)
-  expect(mockRpc.invoke).toHaveBeenCalledWith('initialize', 'message-port', mockMessagePort)
+  expect(mockRpc.invokeAndTransfer).toHaveBeenCalledWith('initialize', 'message-port', mockMessagePort)
   expect(mockHandleIpc.unhandleIpc).toHaveBeenCalledWith(mockIpc)
   expect(result).toBe(mockRpc)
 })
