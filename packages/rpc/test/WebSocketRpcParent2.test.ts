@@ -12,7 +12,7 @@ afterEach(() => {
 })
 
 test('create returns rpc from WebSocketRpcParent', async () => {
-  const commandMap = { test: () => 42 }
+  const commandMap = { test: (): number => 42 }
   const type = 'renderer'
 
   let wsCreatedWith: string | undefined
@@ -20,21 +20,26 @@ test('create returns rpc from WebSocketRpcParent', async () => {
 
   // ESM mocking
   jest.unstable_mockModule('../src/parts/Location/Location.ts', () => ({
-    getHost: () => 'localhost:8080',
-    getProtocol: () => 'ws:',
+    getHost: (): string => 'localhost:8080',
+    getProtocol: (): string => 'ws:',
   }))
   jest.unstable_mockModule('../src/parts/GetWebSocketUrl/GetWebSocketUrl.ts', () => ({
-    getWebSocketUrl: (t: string, host: string, protocol: string) => {
+    getWebSocketUrl: (t: string, host: string, protocol: string): string => {
       return 'ws://localhost:8080/' + t
     },
   }))
-  const fakeRpc = { send: () => {}, invoke: async () => 1, invokeAndTransfer: async () => 2, dispose: async () => {} }
+  const fakeRpc = {
+    send: (): void => {},
+    invoke: async (): Promise<any> => 1,
+    invokeAndTransfer: async (): Promise<any> => 2,
+    dispose: async (): Promise<void> => {},
+  }
   jest.unstable_mockModule('../src/parts/WebSocketRpcParent/WebSocketRpcParent.ts', () => ({
     create: jest.fn().mockResolvedValue(fakeRpc as unknown as never),
   }))
 
   // Mock WebSocket
-  globalThis.WebSocket = function(url: string) {
+  globalThis.WebSocket = function (url: string) {
     wsCreatedWith = url
     return wsInstance
   } as any
