@@ -9,10 +9,12 @@ export const create = async ({
   commandMap,
   url,
   port,
+  name,
 }: {
   commandMap: any
   url: string
   port: MessagePort
+  name?: string
 }): Promise<Rpc> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
