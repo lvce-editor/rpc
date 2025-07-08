@@ -9,7 +9,7 @@ class MockWorker {
 }
 
 // Mock global Worker
-global.Worker = MockWorker as any
+globalThis.Worker = MockWorker as any
 
 test('should return true for Worker instances', () => {
   const worker = new Worker('data:text/javascript,')
@@ -25,5 +25,5 @@ test('should return false for non-Worker values', () => {
   expect(isWorker([])).toBe(false)
   expect(isWorker(() => {})).toBe(false)
   expect(isWorker(new Date())).toBe(false)
-  expect(isWorker(new Error())).toBe(false)
+  expect(isWorker(new Error('test'))).toBe(false)
 })
