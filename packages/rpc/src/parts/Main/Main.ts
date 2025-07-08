@@ -2,6 +2,7 @@ export * as ElectronMessagePortRpcClient from '../ElectronMessagePortRpcClient/E
 export * as ElectronUtilityProcessRpcClient from '../ElectronUtilityProcessRpcClient/ElectronUtilityProcessRpcClient.ts'
 export * as ElectronUtilityProcessRpcParent from '../ElectronUtilityProcessRpcParent/ElectronUtilityProcessRpcParent.ts'
 export * as ElectronWebContentsRpcClient from '../ElectronWebContentsRpcClient/ElectronWebContentsRpcClient.ts'
+export * as ElectronWindowRpcClient from '../ElectronWindowRpcClient/ElectronWindowRpcClient.ts'
 export * as MessagePortRpcClient from '../MessagePortRpcClient/MessagePortRpcClient.ts'
 export * as MessagePortRpcParent from '../MessagePortRpcParent/MessagePortRpcParent.ts'
 export * as MockRpc from '../MockRpc/MockRpc.ts'
