@@ -6,6 +6,7 @@ export * as ElectronWindowRpcClient from '../ElectronWindowRpcClient/ElectronWin
 export * as MessagePortRpcClient from '../MessagePortRpcClient/MessagePortRpcClient.ts'
 export * as MessagePortRpcParent from '../MessagePortRpcParent/MessagePortRpcParent.ts'
 export * as MockRpc from '../MockRpc/MockRpc.ts'
+export * as ModuleWorkerWithMessagePortRpcParent from '../ModuleWorkerWithMessagePortRpcParent/ModuleWorkerWithMessagePortRpcParent.ts'
 export * as NodeForkedProcessRpcClient from '../NodeForkedProcessRpcClient/NodeForkedProcessRpcClient.ts'
 export * as NodeForkedProcessRpcParent from '../NodeForkedProcessRpcParent/NodeForkedProcessRpcParent.ts'
 export * as NodeWebSocketRpcClient from '../NodeWebSocketRpcClient/NodeWebSocketRpcClient.ts'

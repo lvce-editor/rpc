@@ -8,3 +8,12 @@ export const handleIpc = (ipc: any): void => {
     ipc.on('message', HandleMessage.handleMessage)
   }
 }
+
+export const unhandleIpc = (ipc: any): void => {
+  if ('removeEventListener' in ipc) {
+    ipc.removeEventListener('message', HandleMessage.handleMessage)
+  } else {
+    // deprecated
+    ipc.onmessage = null
+  }
+}
