@@ -22,14 +22,17 @@ test('should create RPC with transferred message port', async () => {
   expect(typeof result.dispose).toBe('function')
 })
 
+const mockSend = (port: MessagePort): Promise<void> => {
+  return Promise.reject(new Error('Send failed'))
+}
+
 test('should handle send function that throws error', async () => {
-  const mockSend = (port: MessagePort): Promise<void> => {
-    return Promise.reject(new Error('Send failed'))
-  }
   const commandMap = {}
 
-  await expect(create({
-    commandMap,
-    send: mockSend,
-  })).rejects.toThrow('Send failed')
+  await expect(
+    create({
+      commandMap,
+      send: mockSend,
+    }),
+  ).rejects.toThrow('Send failed')
 })
