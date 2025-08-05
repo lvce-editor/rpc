@@ -1,8 +1,8 @@
 import { IpcParentWithNodeWorker } from '@lvce-editor/ipc'
-import type { Rpc } from '../Rpc/Rpc.ts'
 import * as Command from '../Command/Command.ts'
 import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
+import { RpcWithStdio } from '../RpcWithStdio/RpcWithStdio.ts'
 
 export const create = async ({
   commandMap,
@@ -19,7 +19,8 @@ export const create = async ({
   path: string
   stdio?: string
   env?: any
-}): Promise<Rpc> => {
+}): Promise<RpcWithStdio> => {
+  process.stdout
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const rawIpc = await IpcParentWithNodeWorker.create({
@@ -32,5 +33,10 @@ export const create = async ({
   const ipc = IpcParentWithNodeWorker.wrap(rawIpc)
   HandleIpc.handleIpc(ipc)
   const rpc = CreateRpc.createRpc(ipc)
+  // @ts-ignore
+  rpc.stdout = ipc._rawIpc.stdout
+  // @ts-ignore
+  rpc.stderr = ipc._rawIpc.stderr
+  // @ts-ignore
   return rpc
 }
