@@ -20,7 +20,6 @@ export const create = async ({
   stdio?: string
   env?: any
 }): Promise<RpcWithStdio> => {
-  process.stdout
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const rawIpc = await IpcParentWithNodeWorker.create({
