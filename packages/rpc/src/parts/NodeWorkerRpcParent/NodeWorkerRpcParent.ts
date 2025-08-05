@@ -1,8 +1,8 @@
 import { IpcParentWithNodeWorker } from '@lvce-editor/ipc'
+import type { RpcWithStdio } from '../RpcWithStdio/RpcWithStdio.ts'
 import * as Command from '../Command/Command.ts'
 import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
-import { RpcWithStdio } from '../RpcWithStdio/RpcWithStdio.ts'
 
 export const create = async ({
   commandMap,
