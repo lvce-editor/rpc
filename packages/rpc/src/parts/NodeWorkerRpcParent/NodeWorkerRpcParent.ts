@@ -15,7 +15,6 @@ export const create = async ({
   commandMap: any
   argv?: readonly string[]
   execArgv?: readonly string[]
-  isMessagePortOpen?: boolean
   path: string
   stdio?: string
   env?: any
