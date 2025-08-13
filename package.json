@@ -1,15 +1,14 @@
 {
   "name": "@lvce-editor/rpc-monorepo",
   "version": "0.0.0-dev",
-  "description": "",
   "license": "MIT",
   "author": "Lvce Editor",
   "type": "module",
   "scripts": {
     "build": "node packages/build/src/build.js",
     "format": "prettier --write .",
-    "lint": "eslint .",
     "postinstall": "lerna bootstrap --ci",
+    "lint": "eslint .",
     "test": "lerna run test",
     "type-check": "tsc -b"
   },
@@ -20,7 +19,7 @@
   },
   "devDependencies": {
     "@lerna/legacy-package-management": "^8.2.4",
-    "@lvce-editor/eslint-config": "^1.57.0",
+    "@lvce-editor/eslint-config": "^1.58.0",
     "eslint": "^9.33.0",
     "lerna": "^8.2.3",
     "prettier": "^3.6.2",
