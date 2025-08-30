@@ -1,3 +1,5 @@
+import { WebWorkerRpcClient } from './Main.ts'
+
 export * as ElectronMessagePortRpcClient from '../ElectronMessagePortRpcClient/ElectronMessagePortRpcClient.ts'
 export * as ElectronUtilityProcessRpcClient from '../ElectronUtilityProcessRpcClient/ElectronUtilityProcessRpcClient.ts'
 export * as ElectronUtilityProcessRpcParent from '../ElectronUtilityProcessRpcParent/ElectronUtilityProcessRpcParent.ts'
@@ -21,6 +23,7 @@ export * as WebSocketRpcParent2 from '../WebSocketRpcParent2/WebSocketRpcParent2
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
 export * from '../MockWebSocketRpc/MockWebSocketRpc.ts'
 export * from '../MockWorkerGlobalRpc/MockWorkerGlobalRpc.ts'
+export * from '../CreateWebWorkerRpcClient/CreateWebWorkerRpcClient.ts'
 export type * from '../RpcClient/RpcClient.ts'
 export type * from '../RpcClientOptions/RpcClientOptions.ts'
 export type * from '../RpcWithStdio/RpcWithStdio.ts'
