@@ -21,6 +21,7 @@ export * as WebSocketRpcParent2 from '../WebSocketRpcParent2/WebSocketRpcParent2
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
 export * from '../MockWebSocketRpc/MockWebSocketRpc.ts'
 export * from '../MockWorkerGlobalRpc/MockWorkerGlobalRpc.ts'
+export * from '../CreateMockRpc/CreateMockRpc.ts'
 export type * from '../RpcClient/RpcClient.ts'
 export type * from '../RpcClientOptions/RpcClientOptions.ts'
 export type * from '../RpcWithStdio/RpcWithStdio.ts'
