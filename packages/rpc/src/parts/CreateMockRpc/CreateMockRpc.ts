@@ -6,7 +6,7 @@ export interface MockRpc extends Rpc {
 
 export const createMockRpc = ({ commandMap }: { commandMap?: any }): MockRpc => {
   const invocations: any[] = []
-  const invoke = (method: string, ...params: readonly any[]) => {
+  const invoke = (method: string, ...params: readonly any[]): any => {
     invocations.push([method, ...params])
     const command = commandMap[method]
     return command(...params)
