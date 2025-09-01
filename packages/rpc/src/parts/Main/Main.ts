@@ -1,5 +1,3 @@
-import { WebWorkerRpcClient } from './Main.ts'
-
 export * as ElectronMessagePortRpcClient from '../ElectronMessagePortRpcClient/ElectronMessagePortRpcClient.ts'
 export * as ElectronUtilityProcessRpcClient from '../ElectronUtilityProcessRpcClient/ElectronUtilityProcessRpcClient.ts'
 export * as ElectronUtilityProcessRpcParent from '../ElectronUtilityProcessRpcParent/ElectronUtilityProcessRpcParent.ts'
