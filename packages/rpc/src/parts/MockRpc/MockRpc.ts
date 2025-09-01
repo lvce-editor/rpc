@@ -1,5 +1,8 @@
 import type { Rpc } from '../Rpc/Rpc.ts'
 
+/**
+ * @deprecated use createMockRpc instead
+ */
 export const create = ({
   commandMap,
   invoke,
