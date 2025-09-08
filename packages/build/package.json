@@ -14,7 +14,7 @@
     "@types/node": "^22.15.3",
     "esbuild": "^0.25.9",
     "execa": "^9.6.0",
-    "rollup": "^4.50.0",
+    "rollup": "^4.50.1",
     "dts-bundle-generator": "^9.5.1"
   }
 }
