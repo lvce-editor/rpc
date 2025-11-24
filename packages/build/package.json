@@ -12,9 +12,9 @@
     "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/node": "^22.15.3",
-    "esbuild": "^0.25.12",
+    "esbuild": "^0.27.0",
     "execa": "^9.6.0",
-    "rollup": "^4.52.5",
+    "rollup": "^4.53.3",
     "dts-bundle-generator": "^9.5.1"
   }
 }
