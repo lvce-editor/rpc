@@ -3,13 +3,8 @@ import type { Rpc } from '../Rpc/Rpc.ts'
 
 export const createRpc = (ipc: any): Rpc => {
   const rpc: Rpc = {
-    // @ts-ignore
-    ipc,
-    /**
-     * @deprecated
-     */
-    send(method: string, ...params: any[]): void {
-      JsonRpc.send(ipc, method, ...params)
+    async dispose(): Promise<void> {
+      await ipc?.dispose()
     },
     invoke(method: string, ...params: any[]): Promise<any> {
       return JsonRpc.invoke(ipc, method, ...params)
@@ -17,8 +12,13 @@ export const createRpc = (ipc: any): Rpc => {
     invokeAndTransfer(method: string, ...params: any[]): Promise<any> {
       return JsonRpc.invokeAndTransfer(ipc, method, ...params)
     },
-    async dispose(): Promise<void> {
-      await ipc?.dispose()
+    // @ts-ignore
+    ipc,
+    /**
+     * @deprecated
+     */
+    send(method: string, ...params: any[]): void {
+      JsonRpc.send(ipc, method, ...params)
     },
   }
   return rpc

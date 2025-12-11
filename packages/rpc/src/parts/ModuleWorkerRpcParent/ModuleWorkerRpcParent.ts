@@ -7,8 +7,8 @@ import * as IsWorker from '../IsWorker/IsWorker.ts'
 
 export const create = async ({
   commandMap,
-  url,
   name,
+  url,
 }: {
   commandMap: any
   url: string
@@ -17,8 +17,8 @@ export const create = async ({
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const worker = await IpcParentWithModuleWorker.create({
-    url,
     name,
+    url,
   })
   if (!IsWorker.isWorker(worker)) {
     throw new Error(`worker must be of type Worker`)

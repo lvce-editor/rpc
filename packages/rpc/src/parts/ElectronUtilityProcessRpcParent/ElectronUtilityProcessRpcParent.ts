@@ -5,12 +5,12 @@ import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
 
 export const create = async ({
+  argv,
   commandMap,
   env,
-  argv,
   execArgv,
-  path,
   name,
+  path,
   requiresSocket,
 }: {
   commandMap: any
@@ -24,11 +24,11 @@ export const create = async ({
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const rawIpc = await IpcParentWithElectronUtilityProcess.create({
-    env,
     argv,
+    env,
     execArgv,
-    path,
     name,
+    path,
   })
   const ipc = IpcParentWithElectronUtilityProcess.wrap(rawIpc)
   if (requiresSocket) {

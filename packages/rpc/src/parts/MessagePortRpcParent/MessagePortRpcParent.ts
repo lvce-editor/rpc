@@ -6,8 +6,8 @@ import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
 
 export const create = async ({
   commandMap,
-  messagePort,
   isMessagePortOpen,
+  messagePort,
 }: {
   commandMap: any
   messagePort: MessagePort
@@ -16,8 +16,8 @@ export const create = async ({
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
   const rawIpc = await IpcParentWithMessagePort.create({
-    messagePort,
     isMessagePortOpen,
+    messagePort,
   })
   const ipc = IpcParentWithMessagePort.wrap(rawIpc)
   HandleIpc.handleIpc(ipc)

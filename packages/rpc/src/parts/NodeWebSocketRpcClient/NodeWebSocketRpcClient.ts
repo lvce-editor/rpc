@@ -7,8 +7,8 @@ import * as IpcChild from '../IpcChildNode/IpcChildNode.ts'
 
 export const create = async ({
   commandMap,
-  request,
   handle,
+  request,
   requiresSocket,
 }: {
   commandMap: any
@@ -18,7 +18,7 @@ export const create = async ({
 }): Promise<Rpc> => {
   // TODO create a commandMap per rpc instance
   Command.register(commandMap)
-  const ipc = await IpcChild.listen(IpcChildWithWebSocket, { request, handle })
+  const ipc = await IpcChild.listen(IpcChildWithWebSocket, { handle, request })
   if (requiresSocket) {
     ipc.requiresSocket = requiresSocket
   }

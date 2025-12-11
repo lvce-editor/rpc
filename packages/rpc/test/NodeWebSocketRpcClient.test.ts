@@ -32,12 +32,12 @@ const { create } = await import('../src/parts/NodeWebSocketRpcClient/NodeWebSock
 
 test('create - creates rpc client with websocket', async () => {
   const mockIpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockRequest = {}
   const mockHandle = {}
@@ -50,14 +50,14 @@ test('create - creates rpc client with websocket', async () => {
 
   const result = await create({
     commandMap: mockCommandMap,
-    request: mockRequest,
     handle: mockHandle,
+    request: mockRequest,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcChild.listen).toHaveBeenCalledWith(expect.anything(), {
-    request: mockRequest,
     handle: mockHandle,
+    request: mockRequest,
   })
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)
   expect(mockCreateRpc.createRpc).toHaveBeenCalledWith(mockIpc)

@@ -32,12 +32,12 @@ const { create } = await import('../src/parts/MessagePortRpcClient/MessagePortRp
 
 test('create - creates rpc client with electron message port', async () => {
   const mockIpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockMessagePort = {}
 

@@ -35,10 +35,10 @@ test('create returns rpc and sets up ipc with requiresSocket', async () => {
     requiresSocket: undefined,
   }
   const mockRpc = {
-    send: jest.fn(),
+    dispose: jest.fn(),
     invoke: jest.fn(),
     invokeAndTransfer: jest.fn(),
-    dispose: jest.fn(),
+    send: jest.fn(),
   }
 
   mockIpcChildWithRendererProcess2.wrap.mockReturnValue(mockIpc)
@@ -50,7 +50,7 @@ test('create returns rpc and sets up ipc with requiresSocket', async () => {
   const webContents = { id: 1 }
   const requiresSocket = { socket: true }
 
-  const rpc = await create({ commandMap, webContents, requiresSocket })
+  const rpc = await create({ commandMap, requiresSocket, webContents })
 
   expect(mockCommand.register).toHaveBeenCalledWith(commandMap)
   expect(mockIpcChildWithRendererProcess2.wrap).toHaveBeenCalledWith(webContents)
@@ -65,10 +65,10 @@ test('create returns rpc without requiresSocket', async () => {
     requiresSocket: undefined,
   }
   const mockRpc = {
-    send: jest.fn(),
+    dispose: jest.fn(),
     invoke: jest.fn(),
     invokeAndTransfer: jest.fn(),
-    dispose: jest.fn(),
+    send: jest.fn(),
   }
 
   mockIpcChildWithRendererProcess2.wrap.mockReturnValue(mockIpc)

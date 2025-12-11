@@ -14,8 +14,8 @@ export const create = async ({
   // TODO create a commandMap per rpc instance
   Command.register(commandMap);
   const rawIpc = await IpcParentWithMessagePort.create({
-    messagePort,
     isMessagePortOpen: true,
+    messagePort,
   });
   const ipc = IpcParentWithMessagePort.wrap(rawIpc);
   HandleIpc.handleIpc(ipc);

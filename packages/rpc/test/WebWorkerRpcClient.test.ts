@@ -32,12 +32,12 @@ const { create } = await import('../src/parts/WebWorkerRpcClient/WebWorkerRpcCli
 
 test('create - creates rpc client with web worker', async () => {
   const mockIpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
 
   // @ts-ignore

@@ -66,8 +66,8 @@ test('createRpc - invoke method sends message and receives response', async () =
     mockIpc.dispatchEvent(
       new MessageEvent('message', {
         data: {
-          jsonrpc: '2.0',
           id: message.id,
+          jsonrpc: '2.0',
           result: 'test-result',
         },
       }),
@@ -76,8 +76,8 @@ test('createRpc - invoke method sends message and receives response', async () =
 
   const result = await rpc.invoke('test-method', 'arg1', 'arg2')
   expect(mockIpc.send).toHaveBeenCalledWith({
-    jsonrpc: '2.0',
     id: expect.any(Number),
+    jsonrpc: '2.0',
     method: 'test-method',
     params: ['arg1', 'arg2'],
   })
@@ -93,11 +93,11 @@ test('createRpc - invoke method handles rejection', async () => {
     mockIpc.dispatchEvent(
       new MessageEvent('message', {
         data: {
-          jsonrpc: '2.0',
-          id: message.id,
           error: {
             message: 'Test error',
           },
+          id: message.id,
+          jsonrpc: '2.0',
         },
       }),
     )
@@ -118,8 +118,8 @@ test('createRpc - invokeAndTransfer method sends message with transfer and recei
     mockIpc.dispatchEvent(
       new MessageEvent('message', {
         data: {
-          jsonrpc: '2.0',
           id: message.id,
+          jsonrpc: '2.0',
           result: 'test-result',
         },
       }),
@@ -128,8 +128,8 @@ test('createRpc - invokeAndTransfer method sends message with transfer and recei
 
   const result = await rpc.invokeAndTransfer('test-method', transferable)
   expect(mockIpc.sendAndTransfer).toHaveBeenCalledWith({
-    jsonrpc: '2.0',
     id: expect.any(Number),
+    jsonrpc: '2.0',
     method: 'test-method',
     params: [transferable],
   })
@@ -146,11 +146,11 @@ test('createRpc - invokeAndTransfer method handles rejection', async () => {
     mockIpc.dispatchEvent(
       new MessageEvent('message', {
         data: {
-          jsonrpc: '2.0',
-          id: message.id,
           error: {
             message: 'Test error',
           },
+          id: message.id,
+          jsonrpc: '2.0',
         },
       }),
     )

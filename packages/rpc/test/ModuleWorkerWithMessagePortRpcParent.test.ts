@@ -52,9 +52,9 @@ test('create - creates rpc parent with module worker and message port', async ()
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
     invokeAndTransfer: jest.fn(),
+    send: jest.fn(),
   }
   const mockMessagePort = {}
   const mockCommandMap = { testCommand: jest.fn() }
@@ -68,16 +68,16 @@ test('create - creates rpc parent with module worker and message port', async ()
 
   const result = await create({
     commandMap: mockCommandMap,
-    url,
+    name: 'test-worker',
     // @ts-ignore
     port: mockMessagePort,
-    name: 'test-worker',
+    url,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithModuleWorker.create).toHaveBeenCalledWith({
-    url,
     name: 'test-worker',
+    url,
   })
   expect(mockIsWorker.isWorker).toHaveBeenCalledWith(mockWorker)
   expect(mockIpcParentWithModuleWorker.wrap).toHaveBeenCalledWith(mockWorker)
@@ -103,16 +103,16 @@ test('create - throws error when worker is not of type Worker', async () => {
   await expect(
     create({
       commandMap: mockCommandMap,
-      url,
       // @ts-ignore
       port: mockMessagePort,
+      url,
     }),
   ).rejects.toThrow('worker must be of type Worker')
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithModuleWorker.create).toHaveBeenCalledWith({
-    url,
     name: undefined,
+    url,
   })
   expect(mockIsWorker.isWorker).toHaveBeenCalledWith(mockWorker)
 })
