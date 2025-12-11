@@ -29,10 +29,10 @@ test('create returns rpc from WebSocketRpcParent', async () => {
     },
   }))
   const fakeRpc = {
-    send: (): void => {},
+    dispose: async (): Promise<void> => {},
     invoke: async (): Promise<any> => 1,
     invokeAndTransfer: async (): Promise<any> => 2,
-    dispose: async (): Promise<void> => {},
+    send: (): void => {},
   }
   jest.unstable_mockModule('../src/parts/WebSocketRpcParent/WebSocketRpcParent.ts', () => ({
     create: jest.fn().mockResolvedValue(fakeRpc as unknown as never),
@@ -57,8 +57,8 @@ test('create returns rpc from WebSocketRpcParent', async () => {
   expect(GetWebSocketUrl.getWebSocketUrl(type, 'localhost:8080', 'ws:')).toBe('ws://localhost:8080/renderer')
   expect(wsCreatedWith).toBe('ws://localhost:8080/renderer')
   expect(WebSocketRpcParent.create).toHaveBeenCalledWith({
-    webSocket: wsInstance,
     commandMap,
+    webSocket: wsInstance,
   })
   expect(rpc).toBe(fakeRpc)
 })

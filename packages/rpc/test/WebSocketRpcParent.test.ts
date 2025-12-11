@@ -42,8 +42,8 @@ test('create - creates rpc parent with websocket', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockWebSocket = {}
 

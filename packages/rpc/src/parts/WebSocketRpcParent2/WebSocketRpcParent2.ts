@@ -9,8 +9,8 @@ export const create = async ({ commandMap, type }: { commandMap: any; type: stri
   const wsUrl = GetWebSocketUrl.getWebSocketUrl(type, host, protocol)
   const webSocket = new WebSocket(wsUrl)
   const rpc = await WebSocketRpcParent.create({
-    webSocket,
     commandMap,
+    webSocket,
   })
   return rpc
 }

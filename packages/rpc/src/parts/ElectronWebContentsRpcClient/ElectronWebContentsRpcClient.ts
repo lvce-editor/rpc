@@ -6,8 +6,8 @@ import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
 
 export const create = async ({
   commandMap,
-  webContents,
   requiresSocket,
+  webContents,
 }: {
   commandMap: any
   webContents: any

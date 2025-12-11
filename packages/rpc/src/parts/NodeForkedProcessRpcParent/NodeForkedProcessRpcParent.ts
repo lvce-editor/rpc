@@ -5,12 +5,12 @@ import * as CreateRpc from '../CreateRpc/CreateRpc.ts'
 import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
 
 export const create = async ({
-  commandMap,
   argv,
+  commandMap,
+  env,
   execArgv,
   path,
   stdio,
-  env,
 }: {
   commandMap: any
   argv?: readonly string[]
@@ -24,10 +24,10 @@ export const create = async ({
   Command.register(commandMap)
   const rawIpc = await IpcParentWithNodeForkedProcess.create({
     argv,
+    env,
     execArgv,
     path,
     stdio,
-    env,
   })
   const ipc = IpcParentWithNodeForkedProcess.wrap(rawIpc)
   HandleIpc.handleIpc(ipc)

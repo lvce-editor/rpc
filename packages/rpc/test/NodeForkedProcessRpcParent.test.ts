@@ -42,8 +42,8 @@ test('create - creates rpc parent with node forked process', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
 
   // @ts-ignore
@@ -59,21 +59,21 @@ test('create - creates rpc parent with node forked process', async () => {
   const env = { NODE_ENV: 'test' }
 
   const result = await create({
-    commandMap: mockCommandMap,
     argv,
+    commandMap: mockCommandMap,
+    env,
     execArgv,
     path,
     stdio,
-    env,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithNodeForkedProcess.create).toHaveBeenCalledWith({
     argv,
+    env,
     execArgv,
     path,
     stdio,
-    env,
   })
   expect(mockIpcParentWithNodeForkedProcess.wrap).toHaveBeenCalledWith(mockRawIpc)
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)
@@ -89,8 +89,8 @@ test('create - creates rpc parent with minimal options', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
 
   // @ts-ignore
@@ -109,10 +109,10 @@ test('create - creates rpc parent with minimal options', async () => {
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithNodeForkedProcess.create).toHaveBeenCalledWith({
     argv: undefined,
+    env: undefined,
     execArgv: undefined,
     path,
     stdio: undefined,
-    env: undefined,
   })
   expect(mockIpcParentWithNodeForkedProcess.wrap).toHaveBeenCalledWith(mockRawIpc)
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)

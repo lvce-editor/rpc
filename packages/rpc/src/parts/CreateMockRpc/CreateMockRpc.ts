@@ -15,9 +15,9 @@ export const createMockRpc = ({ commandMap }: { commandMap?: any }): MockRpc => 
     return command(...params)
   }
   const mockRpc: MockRpc = {
+    invocations,
     invoke,
     invokeAndTransfer: invoke,
-    invocations,
   } as any
   return mockRpc
 }

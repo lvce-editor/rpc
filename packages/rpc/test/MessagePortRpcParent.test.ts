@@ -42,8 +42,8 @@ test('create - creates rpc parent with message port', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
   const mockMessagePort = {}
   const isMessagePortOpen = true
@@ -57,15 +57,15 @@ test('create - creates rpc parent with message port', async () => {
 
   const result = await create({
     commandMap: mockCommandMap,
+    isMessagePortOpen,
     // @ts-ignore
     messagePort: mockMessagePort,
-    isMessagePortOpen,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithMessagePort.create).toHaveBeenCalledWith({
-    messagePort: mockMessagePort,
     isMessagePortOpen,
+    messagePort: mockMessagePort,
   })
   expect(mockIpcParentWithMessagePort.wrap).toHaveBeenCalledWith(mockRawIpc)
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)

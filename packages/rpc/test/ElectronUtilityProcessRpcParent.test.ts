@@ -42,8 +42,8 @@ test('create - creates rpc parent with electron utility process', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
 
   // @ts-ignore
@@ -59,21 +59,21 @@ test('create - creates rpc parent with electron utility process', async () => {
   const env = { NODE_ENV: 'test' }
 
   const result = await create({
-    commandMap: mockCommandMap,
     argv,
-    execArgv,
-    path,
-    name,
+    commandMap: mockCommandMap,
     env,
+    execArgv,
+    name,
+    path,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithElectronUtilityProcess.create).toHaveBeenCalledWith({
-    env,
     argv,
+    env,
     execArgv,
-    path,
     name,
+    path,
   })
   expect(mockIpcParentWithElectronUtilityProcess.wrap).toHaveBeenCalledWith(mockRawIpc)
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)
@@ -89,8 +89,8 @@ test('create - creates rpc parent with minimal options', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
 
   // @ts-ignore
@@ -104,17 +104,17 @@ test('create - creates rpc parent with minimal options', async () => {
 
   const result = await create({
     commandMap: mockCommandMap,
-    path,
     name,
+    path,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithElectronUtilityProcess.create).toHaveBeenCalledWith({
-    env: undefined,
     argv: undefined,
+    env: undefined,
     execArgv: undefined,
-    path,
     name,
+    path,
   })
   expect(mockIpcParentWithElectronUtilityProcess.wrap).toHaveBeenCalledWith(mockRawIpc)
   expect(mockHandleIpc.handleIpc).toHaveBeenCalledWith(mockIpc)
@@ -130,8 +130,8 @@ test('create - sets requiresSocket on ipc when provided', async () => {
     wrapped: true,
   }
   const mockRpc = {
-    send: jest.fn(),
     invoke: jest.fn(),
+    send: jest.fn(),
   }
 
   // @ts-ignore
@@ -146,18 +146,18 @@ test('create - sets requiresSocket on ipc when provided', async () => {
 
   const result = await create({
     commandMap: mockCommandMap,
-    path,
     name,
+    path,
     requiresSocket,
   })
 
   expect(mockCommand.register).toHaveBeenCalledWith(mockCommandMap)
   expect(mockIpcParentWithElectronUtilityProcess.create).toHaveBeenCalledWith({
-    env: undefined,
     argv: undefined,
+    env: undefined,
     execArgv: undefined,
-    path,
     name,
+    path,
   })
   expect(mockIpcParentWithElectronUtilityProcess.wrap).toHaveBeenCalledWith(mockRawIpc)
   expect(mockIpc.requiresSocket).toBe(requiresSocket)

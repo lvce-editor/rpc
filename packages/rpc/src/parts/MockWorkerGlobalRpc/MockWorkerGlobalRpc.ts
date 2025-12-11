@@ -1,6 +1,6 @@
 interface MockWorkerGlobalRpcResult {
-  readonly start: () => void
   readonly dispose: () => void
+  readonly start: () => void
 }
 
 export const mockWorkerGlobalRpc = (): MockWorkerGlobalRpcResult => {
@@ -31,6 +31,14 @@ export const mockWorkerGlobalRpc = (): MockWorkerGlobalRpcResult => {
   globalThis.WorkerGlobalScope = {}
   const { port1, port2 } = new MessageChannel()
   return {
+    dispose(): void {
+      port1.close()
+      port2.close()
+      globalThis.onmessage = originalOnMessage
+      globalThis.postMessage = originalPostMessage
+      globalThis.WorkerGlobalScope = originalWorkerGlobalScope
+      globalThis.addEventListener = originalAddEventListener
+    },
     start(): void {
       const messageEvent = new MessageEvent('message', {
         data: {
@@ -44,14 +52,6 @@ export const mockWorkerGlobalRpc = (): MockWorkerGlobalRpcResult => {
       if (onMessageListener) {
         onMessageListener(messageEvent)
       }
-    },
-    dispose(): void {
-      port1.close()
-      port2.close()
-      globalThis.onmessage = originalOnMessage
-      globalThis.postMessage = originalPostMessage
-      globalThis.WorkerGlobalScope = originalWorkerGlobalScope
-      globalThis.addEventListener = originalAddEventListener
     },
   }
 }

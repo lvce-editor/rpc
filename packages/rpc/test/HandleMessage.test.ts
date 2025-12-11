@@ -6,12 +6,12 @@ test('handleMessage - processes message event', async () => {
     postMessage: jest.fn(),
   }
   const mockEvent = {
-    target: mockTarget,
     data: {
       jsonrpc: '2.0',
       method: 'test',
       params: [],
     },
+    target: mockTarget,
   }
   await HandleMessage.handleMessage(mockEvent)
   // Basic test to ensure it runs without throwing

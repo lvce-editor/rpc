@@ -33,10 +33,10 @@ jest.unstable_mockModule('@lvce-editor/ipc', () => ({
 test('create returns rpc and sets up ipc', async () => {
   const mockIpc = {}
   const mockRpc = {
-    send: jest.fn(),
+    dispose: jest.fn(),
     invoke: jest.fn(),
     invokeAndTransfer: jest.fn(),
-    dispose: jest.fn(),
+    send: jest.fn(),
   }
 
   mockIpcChildWithElectronWindow.wrap.mockReturnValue(mockIpc)
