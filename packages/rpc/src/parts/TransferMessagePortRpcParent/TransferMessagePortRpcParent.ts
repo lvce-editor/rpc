@@ -3,8 +3,8 @@ import * as PlainMessagePortRpc from '../PlainMessagePortRpc/PlainMessagePortRpc
 
 export const create = async ({
   commandMap,
-  send,
   isMessagePortOpen,
+  send,
 }: {
   commandMap: any
   send: (port: MessagePort) => Promise<void>
@@ -14,7 +14,7 @@ export const create = async ({
   await send(port1)
   return PlainMessagePortRpc.create({
     commandMap,
-    messagePort: port2,
     isMessagePortOpen,
+    messagePort: port2,
   })
 }

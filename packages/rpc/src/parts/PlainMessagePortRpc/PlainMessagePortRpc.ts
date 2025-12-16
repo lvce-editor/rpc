@@ -6,8 +6,8 @@ import * as HandleIpc from '../HandleIpc/HandleIpc.ts'
 
 export const create = async ({
   commandMap,
-  messagePort,
   isMessagePortOpen = true,
+  messagePort,
 }: {
   commandMap: any
   messagePort: MessagePort
