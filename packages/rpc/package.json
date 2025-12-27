@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@lvce-editor/command": "^2.0.0",
-    "@lvce-editor/ipc": "^14.6.0",
+    "@lvce-editor/ipc": "^14.7.0",
     "@lvce-editor/json-rpc": "^7.0.0"
   },
   "devDependencies": {
