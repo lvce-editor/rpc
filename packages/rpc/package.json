@@ -5,6 +5,10 @@
   "keywords": [
     "rpc"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lvce-editor/rpc"
+  },
   "license": "MIT",
   "author": "Lvce Editor",
   "sideEffects": false,
