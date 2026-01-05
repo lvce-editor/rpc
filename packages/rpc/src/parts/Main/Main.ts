@@ -20,6 +20,7 @@ export * as WebSocketRpcParent from '../WebSocketRpcParent/WebSocketRpcParent.ts
 export * as WebSocketRpcParent2 from '../WebSocketRpcParent2/WebSocketRpcParent2.ts'
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
 export * from '../CreateMockRpc/CreateMockRpc.ts'
+export * from '../UtilityProcessRpcParent/UtilityProcessRpcParent.ts'
 export * from '../CreateWebWorkerRpcClient/CreateWebWorkerRpcClient.ts'
 export * from '../MockWebSocketRpc/MockWebSocketRpc.ts'
 export * from '../MockWorkerGlobalRpc/MockWorkerGlobalRpc.ts'
