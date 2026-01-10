@@ -1,3 +1,4 @@
+// @ts-ignore
 import { unwrapJsonRpcResult } from '@lvce-editor/json-rpc'
 import type { IpcConnection } from '../JsonRpcTypes/JsonRpcTypes.ts'
 import type { Rpc } from '../Rpc/Rpc.ts'
