@@ -1,9 +1,9 @@
+import { unwrapJsonRpcResult } from '@lvce-editor/json-rpc'
 import type { IpcConnection } from '../JsonRpcTypes/JsonRpcTypes.ts'
 import type { Rpc } from '../Rpc/Rpc.ts'
 import * as JsonRpcEvent from '../JsonRpcEvent/JsonRpcEvent.ts'
 import * as JsonRpcRequest from '../JsonRpcRequest/JsonRpcRequest.ts'
 import { registerPromise } from '../RegisterPromise/RegisterPromise.ts'
-import * as UnwrapJsonRpcResult from '../UnwrapJsonRpcResult/UnwrapJsonRpcResult.ts'
 
 type Callbacks = Record<number, (value: unknown) => void>
 
@@ -22,7 +22,7 @@ const invokeHelper = async <T>(
     ipc.send(message)
   }
   const responseMessage = await promise
-  return UnwrapJsonRpcResult.unwrapJsonRpcResult<T>(responseMessage)
+  return unwrapJsonRpcResult<T>(responseMessage)
 }
 
 export const createRpc = (ipc: any): Rpc => {
