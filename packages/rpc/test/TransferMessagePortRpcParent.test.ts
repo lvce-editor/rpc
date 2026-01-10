@@ -24,7 +24,7 @@ test('should create RPC with transferred message port', async () => {
   // Cleanup
   await result.dispose()
   if (capturedPort) {
-    (capturedPort as MessagePort).close()
+    ;(capturedPort as MessagePort).close()
   }
 })
 
