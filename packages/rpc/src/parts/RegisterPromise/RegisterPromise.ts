@@ -1,3 +1,4 @@
+/* eslint-disable n/no-unsupported-features/es-syntax */
 import type { RegisteredPromise } from '../RegisteredPromise/RegisteredPromise.ts'
 import * as Id from '../Id/Id.ts'
 
