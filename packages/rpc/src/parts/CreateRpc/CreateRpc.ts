@@ -27,6 +27,15 @@ const invokeHelper = async <T>(
 
 export const createRpc = (ipc: any): Rpc => {
   const callbacks: Record<number, (value: unknown) => void> = Object.create(null)
+  ipc._resolve = (id: number, response: any): void => {
+    const fn = callbacks[id]
+    if (!fn) {
+      console.warn(`callback ${id} may already be disposed`)
+      return
+    }
+    fn(response)
+    delete callbacks[id]
+  }
   const rpc: Rpc = {
     async dispose(): Promise<void> {
       await ipc?.dispose()
