@@ -12,7 +12,7 @@ export const create = async ({
   isMessagePortOpen?: boolean
 }): Promise<Rpc> => {
   let rpcPromise: Promise<Rpc> | undefined
-  const getOrCreate = () => {
+  const getOrCreate = (): Promise<Rpc> => {
     if (!rpcPromise) {
       rpcPromise = TransferMessagePortRpcParent.create({
         commandMap,
