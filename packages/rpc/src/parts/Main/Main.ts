@@ -18,6 +18,7 @@ export * as PlainMessagePortRpcParent from '../PlainMessagePortRpcParent/PlainMe
 export * as TransferMessagePortRpcParent from '../TransferMessagePortRpcParent/TransferMessagePortRpcParent.ts'
 export * as WebSocketRpcParent from '../WebSocketRpcParent/WebSocketRpcParent.ts'
 export * as WebSocketRpcParent2 from '../WebSocketRpcParent2/WebSocketRpcParent2.ts'
+export * as LazyWebSocketRpcParent2 from '../LazyWebSocketRpcParent2/LazyWebSocketRpcParent2.ts'
 export * as WebWorkerRpcClient from '../WebWorkerRpcClient/WebWorkerRpcClient.ts'
 export * as WebWorkerRpcClient2 from '../WebWorkerRpcClient2/WebWorkerRpcClient2.ts'
 export * as LazyTransferMessagePortRpcParent from '../LazyTransferMessagePortRpcParent/LazyTransferMessagePortRpcParent.ts'
