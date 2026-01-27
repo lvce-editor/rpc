@@ -1,6 +1,5 @@
-import * as Callback from '../Callback/Callback.ts'
+import { handleJsonRpcMessage } from '@lvce-editor/json-rpc'
 import * as Command from '../Command/Command.ts'
-import * as HandleJsonRpcMessage from '../JsonRpc/JsonRpc.ts'
 
 const requiresSocket = (): boolean => {
   return false
@@ -17,11 +16,12 @@ const logError = (): void => {
 export const handleMessage = (event: any): Promise<void> => {
   const actualRequiresSocket = event?.target?.requiresSocket || requiresSocket
   const actualExecute = event?.target?.execute || Command.execute
-  return HandleJsonRpcMessage.handleJsonRpcMessage(
+
+  return handleJsonRpcMessage(
     event.target,
     event.data,
     actualExecute,
-    Callback.resolve,
+    event.target._resolve,
     preparePrettyError,
     logError,
     actualRequiresSocket,

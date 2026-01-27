@@ -40,9 +40,8 @@ jest.unstable_mockModule('../src/parts/HandleIpc/HandleIpc.js', () => mockHandle
 jest.unstable_mockModule('../src/parts/CreateRpc/CreateRpc.js', () => mockCreateRpc)
 jest.unstable_mockModule('../src/parts/IsWorker/IsWorker.js', () => mockIsWorker)
 
-const { create } = await import(
-  '../src/parts/ModuleWorkerWithMessagePortRpcParent/ModuleWorkerWithMessagePortRpcParent.js'
-)
+const { create } =
+  await import('../src/parts/ModuleWorkerWithMessagePortRpcParent/ModuleWorkerWithMessagePortRpcParent.js')
 
 test('create - creates rpc parent with module worker and message port', async () => {
   const mockWorker = {
