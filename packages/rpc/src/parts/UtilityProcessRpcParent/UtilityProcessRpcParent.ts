@@ -8,28 +8,28 @@ const { create } = IpcParentWithElectronUtilityProcess
 
 const { wrap } = IpcParentWithElectronUtilityProcess
 
-const effects = ({ name, rawIpc }: { name: string; rawIpc: any }) => {
+const effects = ({ name, rawIpc }: { name: string; rawIpc: any }): void => {
   if (!rawIpc.pid) {
     return
   }
   const { pid } = rawIpc
   const formattedName = FormatUtilityProcessName.formatUtilityProcessName(name)
   UtilityProcessState.add(pid, rawIpc, formattedName)
-  const cleanup = () => {
+  const cleanup = (): void => {
     UtilityProcessState.remove(pid)
     rawIpc.off('exit', handleExit)
   }
-  const handleExit = () => {
+  const handleExit = (): void => {
     cleanup()
   }
   rawIpc.on('exit', handleExit)
 }
 
-export const createUtilityProcessRpc = async ({ env, name }: { env?: any; name: string }) => {
+export const createUtilityProcessRpc = async ({ env, name }: { env?: any; name: string }): Promise<any> => {
   const rawIpc = await create({
     env,
   })
-  effects({ rawIpc, name })
+  effects({ name, rawIpc })
   const ipc = wrap(rawIpc)
   HandleIpc.handleIpc(ipc)
   const rpc = CreateRpc.createRpc(ipc)
