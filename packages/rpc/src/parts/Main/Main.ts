@@ -3,6 +3,7 @@ export * as ElectronUtilityProcessRpcClient from '../ElectronUtilityProcessRpcCl
 export * as ElectronUtilityProcessRpcParent from '../ElectronUtilityProcessRpcParent/ElectronUtilityProcessRpcParent.ts'
 export * as ElectronWebContentsRpcClient from '../ElectronWebContentsRpcClient/ElectronWebContentsRpcClient.ts'
 export * as ElectronWindowRpcClient from '../ElectronWindowRpcClient/ElectronWindowRpcClient.ts'
+export * as LazyNodeWorkerRpcParent from '../LazyNodeWorkerRpcParent/LazyNodeWorkerRpcParent.ts'
 export * as LazyTransferElectronMessagePortRpc from '../LazyTransferElectronMessagePortRpc/LazyTransferElectronMessagePortRpc.ts'
 export * as LazyTransferMessagePortRpcParent from '../LazyTransferMessagePortRpcParent/LazyTransferMessagePortRpcParent.ts'
 export * as LazyWebSocketRpcParent2 from '../LazyWebSocketRpcParent2/LazyWebSocketRpcParent2.ts'
