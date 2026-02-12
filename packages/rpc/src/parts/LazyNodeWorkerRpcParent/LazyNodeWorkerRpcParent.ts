@@ -2,7 +2,7 @@ import type { Rpc } from '../Rpc/Rpc.ts'
 import * as NodeWorkerRpcParent from '../NodeWorkerRpcParent/NodeWorkerRpcParent.ts'
 import { createSharedLazyRpc } from '../SharedLazyRpc/SharedLazyRpc.ts'
 
-export const create = async ({
+export const create = ({
   argv,
   commandMap,
   env,
@@ -16,7 +16,7 @@ export const create = async ({
   path: string
   stdio?: string
   env?: any
-}): Promise<Rpc> => {
+}): Rpc => {
   return createSharedLazyRpc(() => {
     return NodeWorkerRpcParent.create({
       argv,
