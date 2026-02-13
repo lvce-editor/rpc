@@ -3,7 +3,6 @@ import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { bundleJs } from './bundleJs.js'
 import { root } from './root.js'
-import { generateApiTypes } from './generateApiTypes.js'
 
 const dist = join(root, '.tmp', 'dist')
 
@@ -60,7 +59,6 @@ const version = await getVersion()
 const packageJson = await readJson(join(root, 'packages', 'rpc', 'package.json'))
 
 delete packageJson.scripts
-delete packageJson.devDependencies
 delete packageJson.prettier
 delete packageJson.jest
 delete packageJson.xo
@@ -74,5 +72,3 @@ await writeJson(join(dist, 'package.json'), packageJson)
 
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
-
-await generateApiTypes()
