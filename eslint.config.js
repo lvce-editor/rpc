@@ -12,6 +12,7 @@ export default [
       'n/no-unsupported-features/node-builtins': 'off',
       'jest/no-restricted-jest-methods': 'off',
       'no-restricted-syntax': 'off',
+      '@cspell/spellchecker': 'off',
     },
   },
 ]
