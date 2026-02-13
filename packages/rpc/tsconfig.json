@@ -10,14 +10,17 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "rootDir": ".",
-    "noEmit": true,
+    "declaration": true,
+    "noEmit": false,
     "allowSyntheticDefaultImports": true,
     "assumeChangesOnlyAffectDirectDependencies": true,
     "strict": true,
     "useUnknownInCatchVariables": false,
     "allowImportingTsExtensions": true,
     "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "rewriteRelativeImportExtensions": true,
+    "outDir": "dist"
   },
   "include": ["src", "test"]
 }
