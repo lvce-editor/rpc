@@ -13,6 +13,10 @@ export default [
       'jest/no-restricted-jest-methods': 'off',
       'no-restricted-syntax': 'off',
       '@cspell/spellchecker': 'off',
+    },
+  },
+  {
+    rules: {
       'e18e/ban-dependencies': 'off',
     },
   },
