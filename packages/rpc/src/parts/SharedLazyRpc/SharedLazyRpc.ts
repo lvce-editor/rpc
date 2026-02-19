@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import type { Rpc } from '../Rpc/Rpc.ts'
-import { TransferMessagePortRpcParent } from '../TransferMessagePortRpcParent/TransferMessagePortRpcParent.ts'
+import * as TransferMessagePortRpcParent from '../TransferMessagePortRpcParent/TransferMessagePortRpcParent.ts'
 
 export const createSharedLazyRpc = (factory: () => Promise<Rpc>): Rpc => {
   let rpcPromise: Promise<Rpc> | undefined
