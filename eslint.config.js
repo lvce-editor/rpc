@@ -15,4 +15,9 @@ export default [
       '@cspell/spellchecker': 'off',
     },
   },
+  {
+    rules: {
+      'e18e/ban-dependencies': 'off',
+    },
+  },
 ]
