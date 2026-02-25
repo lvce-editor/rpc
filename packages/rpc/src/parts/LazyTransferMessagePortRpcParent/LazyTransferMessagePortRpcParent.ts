@@ -1,6 +1,6 @@
 import type { Rpc } from '../Rpc/Rpc.ts'
-import { TransferMessagePortRpcParent } from '../Main/Main.ts'
 import { createSharedLazyRpc } from '../SharedLazyRpc/SharedLazyRpc.ts'
+import * as TransferMessagePortRpcParent from '../TransferMessagePortRpcParent/TransferMessagePortRpcParent.ts'
 
 export const create = async ({
   commandMap,
