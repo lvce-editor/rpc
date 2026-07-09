@@ -48,7 +48,7 @@
   "dependencies": {
     "@lvce-editor/assert": "^1.5.1",
     "@lvce-editor/command": "^2.0.0",
-    "@lvce-editor/ipc": "^16.0.0",
+    "@lvce-editor/ipc": "^16.2.0",
     "@lvce-editor/json-rpc": "^8.1.0"
   },
   "devDependencies": {
