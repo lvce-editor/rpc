@@ -69,3 +69,16 @@ test('create - creates rpc parent with websocket', async () => {
   expect(mockCreateRpc.createRpc).toHaveBeenCalledWith(mockIpc)
   expect(result).toBe(mockRpc)
 })
+
+test('create - wraps ipc connection errors', async () => {
+  const error = new Error('WebSocket connection error')
+  mockIpcParentWithWebSocket.create.mockRejectedValueOnce(error as never)
+
+  await expect(
+    create({
+      commandMap: {},
+      // @ts-ignore
+      webSocket: {},
+    }),
+  ).rejects.toThrow('Failed to create rpc connection: WebSocket connection error')
+})
