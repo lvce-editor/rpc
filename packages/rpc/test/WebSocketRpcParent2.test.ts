@@ -19,11 +19,11 @@ test('create returns rpc from WebSocketRpcParent', async () => {
   const wsInstance: any = { readyState: 1 }
 
   // ESM mocking
-  jest.unstable_mockModule('../src/parts/Location/Location.ts', () => ({
+  jest.unstable_mockModule('../src/parts/Location/Location.js', () => ({
     getHost: (): string => 'localhost:8080',
     getProtocol: (): string => 'ws:',
   }))
-  jest.unstable_mockModule('../src/parts/GetWebSocketUrl/GetWebSocketUrl.ts', () => ({
+  jest.unstable_mockModule('../src/parts/GetWebSocketUrl/GetWebSocketUrl.js', () => ({
     getWebSocketUrl: (t: string, host: string, protocol: string): string => {
       return 'ws://localhost:8080/' + t
     },
@@ -34,7 +34,7 @@ test('create returns rpc from WebSocketRpcParent', async () => {
     invokeAndTransfer: async (): Promise<any> => 2,
     send: (): void => {},
   }
-  jest.unstable_mockModule('../src/parts/WebSocketRpcParent/WebSocketRpcParent.ts', () => ({
+  jest.unstable_mockModule('../src/parts/WebSocketRpcParent/WebSocketRpcParent.js', () => ({
     create: jest.fn().mockResolvedValue(fakeRpc as unknown as never),
   }))
 
@@ -45,10 +45,10 @@ test('create returns rpc from WebSocketRpcParent', async () => {
   } as any
 
   // Dynamic imports after mocking
-  const WebSocketRpcParent2 = await import('../src/parts/WebSocketRpcParent2/WebSocketRpcParent2.ts')
-  const WebSocketRpcParent = await import('../src/parts/WebSocketRpcParent/WebSocketRpcParent.ts')
-  const GetWebSocketUrl = await import('../src/parts/GetWebSocketUrl/GetWebSocketUrl.ts')
-  const Location = await import('../src/parts/Location/Location.ts')
+  const WebSocketRpcParent2 = await import('../src/parts/WebSocketRpcParent2/WebSocketRpcParent2.js')
+  const WebSocketRpcParent = await import('../src/parts/WebSocketRpcParent/WebSocketRpcParent.js')
+  const GetWebSocketUrl = await import('../src/parts/GetWebSocketUrl/GetWebSocketUrl.js')
+  const Location = await import('../src/parts/Location/Location.js')
 
   const rpc = await WebSocketRpcParent2.create({ commandMap, type })
 
