@@ -26,4 +26,10 @@ export default [
       'e18e/ban-dependencies': 'off',
     },
   },
+  {
+    files: ['packages/e2e/**/*.ts'],
+    rules: {
+      'e2e/no-imports': 'off',
+    },
+  },
 ]
