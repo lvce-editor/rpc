@@ -16,7 +16,12 @@ test('create returns rpc from WebSocketRpcParent', async () => {
   const type = 'renderer'
 
   let wsCreatedWith: string | undefined
-  const wsInstance: any = { readyState: 1 }
+  const addEventListener = jest.fn()
+  const wsInstance: any = {
+    addEventListener,
+    readyState: 1,
+  }
+  const onClose = jest.fn()
 
   // ESM mocking
   jest.unstable_mockModule('../src/parts/Location/Location.js', () => ({
@@ -50,15 +55,22 @@ test('create returns rpc from WebSocketRpcParent', async () => {
   const GetWebSocketUrl = await import('../src/parts/GetWebSocketUrl/GetWebSocketUrl.js')
   const Location = await import('../src/parts/Location/Location.js')
 
-  const rpc = await WebSocketRpcParent2.create({ commandMap, type })
+  const rpc = await WebSocketRpcParent2.create({ commandMap, onClose, type })
 
   expect(Location.getHost()).toBe('localhost:8080')
   expect(Location.getProtocol()).toBe('ws:')
   expect(GetWebSocketUrl.getWebSocketUrl(type, 'localhost:8080', 'ws:')).toBe('ws://localhost:8080/renderer')
   expect(wsCreatedWith).toBe('ws://localhost:8080/renderer')
+  expect(addEventListener).toHaveBeenCalledWith('close', onClose, {
+    once: true,
+  })
   expect(WebSocketRpcParent.create).toHaveBeenCalledWith({
     commandMap,
     webSocket: wsInstance,
   })
   expect(rpc).toBe(fakeRpc)
+
+  const closeListener = addEventListener.mock.calls[0][1] as () => void
+  closeListener()
+  expect(onClose).toHaveBeenCalledTimes(1)
 })
