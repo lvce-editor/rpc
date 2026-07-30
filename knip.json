@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": ["scripts/*.js"],
+      "project": ["*.js", "scripts/*.js"]
+    },
+    "packages/build": {
+      "entry": ["src/build.js", "src/computeNodeModulesCacheKey.js"],
+      "project": ["src/**/*.js"]
+    },
+    "packages/e2e": {
+      "entry": ["src/worker.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts"]
+    },
+    "packages/memory": {
+      "entry": ["src/measureMemory.ts"],
+      "project": ["src/**/*.ts"]
+    },
+    "packages/rpc": {
+      "entry": ["src/index.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts"]
+    }
+  }
+}
