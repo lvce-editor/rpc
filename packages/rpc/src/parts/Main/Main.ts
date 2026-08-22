@@ -14,6 +14,7 @@ export * as ModuleWorkerRpcParent from '../ModuleWorkerRpcParent/ModuleWorkerRpc
 export * as ModuleWorkerWithMessagePortRpcParent from '../ModuleWorkerWithMessagePortRpcParent/ModuleWorkerWithMessagePortRpcParent.ts'
 export * as NodeForkedProcessRpcClient from '../NodeForkedProcessRpcClient/NodeForkedProcessRpcClient.ts'
 export * as NodeForkedProcessRpcParent from '../NodeForkedProcessRpcParent/NodeForkedProcessRpcParent.ts'
+export * as NodeRpcProcess from '../NodeRpcProcess/NodeRpcProcess.ts'
 export * as NodeWebSocketRpcClient from '../NodeWebSocketRpcClient/NodeWebSocketRpcClient.ts'
 export * as NodeWorkerRpcClient from '../NodeWorkerRpcClient/NodeWorkerRpcClient.ts'
 export * as NodeWorkerRpcParent from '../NodeWorkerRpcParent/NodeWorkerRpcParent.ts'
