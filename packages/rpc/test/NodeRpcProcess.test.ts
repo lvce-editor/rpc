@@ -109,6 +109,63 @@ test('attaches an Electron message port to the extension command map', async () 
   expect(mockElectronMessagePortRpcClient.create).toHaveBeenCalledWith({ commandMap: extensionCommandMap, messagePort })
 })
 
+test('attaches the Electron secondary control port to the parent command map', async () => {
+  const parentRpc = createMockRpc()
+  const controlRpc = createMockRpc()
+  mockElectronUtilityProcessRpcClient.create.mockResolvedValue(parentRpc)
+  mockElectronMessagePortRpcClient.create.mockResolvedValue(controlRpc)
+  await NodeRpcProcess.create({ commandMap: { 'Test.run': jest.fn() } })
+  const [{ commandMap }] = mockElectronUtilityProcessRpcClient.create.mock.calls[0]
+  const messagePort = {} as MessagePort
+
+  await commandMap['HandleElectronMessagePort.handleElectronMessagePort'](messagePort, 1)
+
+  expect(mockElectronMessagePortRpcClient.create).toHaveBeenCalledWith({ commandMap, messagePort })
+})
+
+test('rejects a second Electron secondary control port', async () => {
+  mockElectronUtilityProcessRpcClient.create.mockResolvedValue(createMockRpc())
+  mockElectronMessagePortRpcClient.create.mockResolvedValue(createMockRpc())
+  await NodeRpcProcess.create({ commandMap: {} })
+  const [{ commandMap }] = mockElectronUtilityProcessRpcClient.create.mock.calls[0]
+
+  await commandMap['HandleElectronMessagePort.handleElectronMessagePort']({})
+
+  await expect(commandMap['HandleElectronMessagePort.handleElectronMessagePort']({})).rejects.toThrow(
+    'Node rpc process already has a control connection',
+  )
+})
+
+test('allows retrying after Electron secondary control setup fails', async () => {
+  mockElectronUtilityProcessRpcClient.create.mockResolvedValue(createMockRpc())
+  mockElectronMessagePortRpcClient.create.mockRejectedValueOnce(new Error('control failed')).mockResolvedValueOnce(createMockRpc())
+  await NodeRpcProcess.create({ commandMap: {} })
+  const [{ commandMap }] = mockElectronUtilityProcessRpcClient.create.mock.calls[0]
+
+  await expect(commandMap['HandleElectronMessagePort.handleElectronMessagePort']({})).rejects.toThrow('control failed')
+
+  await expect(commandMap['HandleElectronMessagePort.handleElectronMessagePort']({})).resolves.toBeUndefined()
+})
+
+test('exits when the Electron secondary control port closes', async () => {
+  const addEventListener = jest.fn<(event: string, listener: () => void) => void>()
+  const exitSpy = jest.spyOn(process, 'exit').mockImplementation((() => undefined) as never)
+  mockElectronUtilityProcessRpcClient.create.mockResolvedValue(createMockRpc())
+  mockElectronMessagePortRpcClient.create.mockResolvedValue({
+    ...createMockRpc(),
+    ipc: { addEventListener },
+  })
+  await NodeRpcProcess.create({ commandMap: {} })
+  const [{ commandMap }] = mockElectronUtilityProcessRpcClient.create.mock.calls[0]
+  await commandMap['HandleElectronMessagePort.handleElectronMessagePort']({})
+  const [, handleClose] = addEventListener.mock.calls[0]
+
+  handleClose()
+
+  expect(exitSpy).toHaveBeenCalledWith(0)
+  exitSpy.mockRestore()
+})
+
 test('attaches a WebSocket to the extension command map', async () => {
   const extensionCommandMap = { 'Test.run': jest.fn() }
   const parentRpc = createMockRpc()

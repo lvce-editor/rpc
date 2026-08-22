@@ -44,6 +44,7 @@ const getParentRpcFactory = (argv: readonly string[]): typeof ElectronUtilityPro
 
 export const create = async ({ commandMap }: CreateOptions): Promise<Rpc> => {
   let attached = false
+  let controlPortAttached = false
 
   const attach = async (createRpc: () => Promise<Rpc>): Promise<void> => {
     if (attached) {
@@ -59,7 +60,23 @@ export const create = async ({ commandMap }: CreateOptions): Promise<Rpc> => {
     }
   }
 
-  const parentCommandMap = {
+  const parentCommandMap: Record<string, (...args: readonly any[]) => any> = {
+    async 'HandleElectronMessagePort.handleElectronMessagePort'(messagePort: MessagePort): Promise<void> {
+      if (controlPortAttached) {
+        throw new Error('Node rpc process already has a control connection')
+      }
+      controlPortAttached = true
+      try {
+        const rpc = (await ElectronMessagePortRpcClient.create({
+          commandMap: parentCommandMap,
+          messagePort,
+        })) as RpcWithIpc
+        exitWhenClosed(rpc)
+      } catch (error) {
+        controlPortAttached = false
+        throw error
+      }
+    },
     'NodeRpcProcess.handleElectronMessagePort'(messagePort: MessagePort): Promise<void> {
       return attach(() => ElectronMessagePortRpcClient.create({ commandMap, messagePort }))
     },
