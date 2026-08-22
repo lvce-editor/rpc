@@ -183,6 +183,27 @@ test('attaches a WebSocket to the extension command map', async () => {
   expect(mockNodeWebSocketRpcClient.create).toHaveBeenCalledWith({ commandMap: extensionCommandMap, handle, request })
 })
 
+test('exits when the WebSocket connection closes', async () => {
+  const on = jest.fn<(event: string, listener: () => void) => void>()
+  const exitSpy = jest.spyOn(process, 'exit').mockImplementation((() => undefined) as never)
+  mockNodeForkedProcessRpcClient.create.mockResolvedValue(createMockRpc())
+  mockNodeWebSocketRpcClient.create.mockResolvedValue({
+    ...createMockRpc(),
+    ipc: { on },
+  })
+  process.argv = ['node', 'main.js', '--ipc-type=node-forked-process']
+  await NodeRpcProcess.create({ commandMap: {} })
+  const [{ commandMap }] = mockNodeForkedProcessRpcClient.create.mock.calls[0]
+  await commandMap['NodeRpcProcess.handleWebSocket']({}, {})
+
+  expect(on).toHaveBeenCalledWith('close', expect.any(Function))
+  const [, handleClose] = on.mock.calls[0]
+  handleClose()
+
+  expect(exitSpy).toHaveBeenCalledWith(0)
+  exitSpy.mockRestore()
+})
+
 test('rejects a second extension connection', async () => {
   const parentRpc = createMockRpc()
   mockElectronUtilityProcessRpcClient.create.mockResolvedValue(parentRpc)

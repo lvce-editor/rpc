@@ -11,6 +11,7 @@ interface CreateOptions {
 interface RpcWithIpc extends Rpc {
   readonly ipc?: {
     readonly addEventListener?: (event: string, listener: () => void) => void
+    readonly on?: (event: string, listener: () => void) => void
     readonly once?: (event: string, listener: () => void) => void
   }
 }
@@ -29,6 +30,8 @@ const exitWhenClosed = (rpc: RpcWithIpc): void => {
     ipc.addEventListener('close', exit)
   } else if (ipc?.once) {
     ipc.once('close', exit)
+  } else if (ipc?.on) {
+    ipc.on('close', exit)
   }
 }
 
