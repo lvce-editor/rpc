@@ -29,5 +29,8 @@
     "@lvce-editor/rpc": "0.0.0-dev",
     "jest": "^29.0.2",
     "ts-jest": "^29.4.6"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
