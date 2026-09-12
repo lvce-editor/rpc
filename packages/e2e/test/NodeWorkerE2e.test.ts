@@ -9,10 +9,10 @@ const __dirname = dirname(__filename)
 test('parent and child worker send messages back and forth', async () => {
   const workerPath = join(__dirname, '../src/worker.ts')
 
-  let helloMessageReceived = ''
+  const { promise: helloMessage, resolve: resolveHelloMessage } = Promise.withResolvers<string>()
   const parentCommandMap = {
     hello: async (message: string): Promise<string> => {
-      helloMessageReceived = message
+      resolveHelloMessage(message)
       return `hello response: ${message}`
     },
   }
@@ -22,8 +22,7 @@ test('parent and child worker send messages back and forth', async () => {
     path: workerPath,
   })
 
-  // Wait a bit for worker to initialize and send hello message
-  await new Promise((resolve) => setTimeout(resolve, 100))
+  const helloMessageReceived = await helloMessage
 
   // Verify worker sent hello message to parent
   expect(helloMessageReceived).toBe('from worker')
