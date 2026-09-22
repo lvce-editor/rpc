@@ -14,6 +14,9 @@ const logError = (): void => {
 }
 
 export const handleMessage = (event: any): Promise<void> => {
+  if (event.data === 'ready') {
+    return Promise.resolve()
+  }
   const actualRequiresSocket = event?.target?.requiresSocket || requiresSocket
   const actualExecute = event?.target?.execute || Command.execute
 
