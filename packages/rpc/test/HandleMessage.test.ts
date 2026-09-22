@@ -17,3 +17,7 @@ test('handleMessage - processes message event', async () => {
   // Basic test to ensure it runs without throwing
   expect(true).toBe(true)
 })
+
+test('handleMessage - ignores ready signal', async () => {
+  await expect(HandleMessage.handleMessage({ data: 'ready' })).resolves.toBeUndefined()
+})
